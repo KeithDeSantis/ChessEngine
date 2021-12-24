@@ -168,4 +168,38 @@ public class Board {
         strBld.append("  0  1  2  3  4  5  6  7");
         return strBld.toString();
     }
+
+    public boolean kingsAlive() {
+
+        int numWhiteKings = 0;
+        int numBlackKings = 0;
+
+        for (int x = 0; x < 8; x ++) {
+            for (int y = 0; y < 8; y ++) {
+
+                if (!(gameBoard[x][y].getPiece() == null)) {
+                    if (gameBoard[x][y].getPiece().getType() == "King") {
+
+                        if (gameBoard[x][y].getPiece().getTeam()) numBlackKings++;
+                        else numWhiteKings++;
+
+                    }
+                }
+
+            }
+        }
+
+        if (numBlackKings > 1 || numWhiteKings > 1) {
+            System.out.println("Multiple Kings of one color detected.");
+            return false;
+        }
+
+        if (numBlackKings == 1 && numWhiteKings == 1) return true;
+
+        return false;
+    }
+
+    public void printBoard() {
+        System.out.println(this);
+    }
 }
