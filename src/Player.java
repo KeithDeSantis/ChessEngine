@@ -9,7 +9,11 @@ public class Player {
         this.team = team;
     }
 
-    public Move takeTurn() { //TODO Add better input system and input string checking/parsing
+    /**
+     * Returns true if a valid turn was completed, and records the move in MoveHistory
+     * @return True if a legal move was made.
+     */
+    public boolean takeTurn() { //TODO Add better input system and input string checking/parsing
 
         Board board = Board.getBoard();
 
@@ -31,18 +35,19 @@ public class Player {
 
             if (board.getSquare(startCoords[0], startCoords[1]).getPiece().getTeam() != this.team) {
                 System.out.println("Illegal move detected.");
-                return null;
+                return false;
             }
 
             ((IPiece) board.getSquare(startCoords[0], startCoords[1]).getPiece()).move(board.getGameBoard()[endCoords[0]][endCoords[1]]);
 
             Move finishedMove = new Move(this.team, board.getSquare(endCoords[0], endCoords[1]).getPiece(), board.getSquare(startCoords[0], startCoords[1]), board.getSquare(endCoords[0], endCoords[1]));
             MoveHistory.getMoveHistory().addToHistory(finishedMove);
-            return finishedMove;
+            return true;
 
-        } catch (Exception e) { System.out.println("Illegal move detected."); }
-
-        return null;
+        } catch (Exception e) {
+            System.out.println("Illegal move detected.");
+            return false;
+        }
 
     }
 

@@ -6,15 +6,23 @@ public class Main {
 
         Player whitePlayer = new Player(false);
         Player blackPlayer = new Player(true);
+        MoveHistory mvHistory = MoveHistory.getMoveHistory();
 
         while (board.kingsAlive()) {
 
             System.out.println("White Turn");
             board.printWhitesBoard();
-            whitePlayer.takeTurn();
+            while(!whitePlayer.takeTurn()){
+                System.out.println("White Turn");
+                board.printWhitesBoard();
+            }
+
             System.out.println("Black Turn");
             board.printBlacksBoard();
-            blackPlayer.takeTurn();
+            while(!blackPlayer.takeTurn()) {
+                System.out.println("Black Turn");
+                board.printBlacksBoard();
+            }
 
         }
 
