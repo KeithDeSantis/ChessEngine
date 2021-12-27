@@ -18,6 +18,9 @@ public class Main {
 
         }
 
+        board.printWhitesBoard();
+        System.out.println("Game is over.");
+
     }
 
 }

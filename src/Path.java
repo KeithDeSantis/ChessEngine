@@ -59,8 +59,6 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
             else direction = 2; // Up Left
         }
 
-        this.addToPath(first);
-
         while (!(last == end)) { // Did this because unclear if != checks memory of value
 
             switch (direction) {
@@ -117,8 +115,6 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
         if (first.getxAxis() < end.getxAxis()) direction = 1;
         else direction = 2;
 
-        this.addToPath(first);
-
         while (!(last == end)) { // Did this because unclear if != checks memory of value
 
             switch (direction) {
@@ -165,18 +161,16 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
         if (first.getyAxis() > end.getyAxis()) direction = 1;
         else direction = 2;
 
-        this.addToPath(first);
-
         while (!(last == end)) { // Did this because unclear if != checks memory of value
 
             switch (direction) {
                 case 1: // Up
-                    last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() + 1);
+                    last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() - 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null)) this.setClear(false);
                     break;
                 case 2: // Down
-                    last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() - 1);
+                    last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() + 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null)) this.setClear(false);
                     break;
@@ -282,7 +276,7 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
             length ++;
         }
 
-        return length;
+        return length - 1; // The minus one accounts for counting the starting square in the length, which we don't want
 
     }
 }
