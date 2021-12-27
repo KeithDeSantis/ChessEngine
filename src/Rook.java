@@ -1,4 +1,4 @@
-public class Rook extends AbsPiece implements IPiece {
+public class Rook extends AbsPiece {
 
     public Rook(boolean team, boolean isLive, Square square, boolean hasMoved) {
         this.setTeam(team);

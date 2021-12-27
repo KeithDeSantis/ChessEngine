@@ -1,6 +1,6 @@
 import java.lang.Math;
 
-public class Knight extends AbsPiece implements IPiece {
+public class Knight extends AbsPiece {
 
     public Knight(boolean team, boolean isLive, Square square, boolean hasMoved) {
         this.setTeam(team);

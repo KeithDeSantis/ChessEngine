@@ -49,7 +49,7 @@ public class Player {
                 return false;
             }
 
-            ((IPiece) board.getSquare(startCoords[0], startCoords[1]).getPiece()).move(board.getGameBoard()[endCoords[0]][endCoords[1]]);
+            board.getSquare(startCoords[0], startCoords[1]).getPiece().move(board.getGameBoard()[endCoords[0]][endCoords[1]]);
 
             Move finishedMove = new Move(this.team, board.getSquare(endCoords[0], endCoords[1]).getPiece(), board.getSquare(startCoords[0], startCoords[1]), board.getSquare(endCoords[0], endCoords[1]));
             MoveHistory.getMoveHistory().addToHistory(finishedMove);

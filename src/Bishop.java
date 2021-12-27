@@ -1,4 +1,4 @@
-public class Bishop extends AbsPiece implements IPiece {
+public class Bishop extends AbsPiece {
 
     public Bishop(boolean team, boolean isLive, Square square, boolean hasMoved) {
         this.setTeam(team);

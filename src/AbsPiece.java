@@ -1,4 +1,4 @@
-public abstract class AbsPiece {
+public abstract class AbsPiece implements IPiece {
 
     // 0 is white, 1 is black team
     private boolean team;

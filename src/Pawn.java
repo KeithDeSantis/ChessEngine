@@ -1,7 +1,7 @@
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Pawn extends AbsPiece implements IPiece {
+public class Pawn extends AbsPiece {
 
     public Pawn(boolean team, boolean isLive, Square square, boolean hasMoved) {
         this.setTeam(team);

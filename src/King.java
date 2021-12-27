@@ -1,4 +1,4 @@
-public class King extends AbsPiece implements IPiece {
+public class King extends AbsPiece {
 
     public King(boolean team, boolean isLive, Square square, boolean hasMoved) {
         this.setTeam(team);

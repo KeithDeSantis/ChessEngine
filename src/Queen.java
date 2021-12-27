@@ -1,4 +1,4 @@
-public class Queen extends AbsPiece implements IPiece {
+public class Queen extends AbsPiece {
 
     public Queen(boolean team, boolean isLive, Square square, boolean hasMoved) {
         this.setTeam(team);
