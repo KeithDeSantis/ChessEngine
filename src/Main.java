@@ -18,20 +18,6 @@ public class Main {
 
         }
 
-        /*
-        try {
-            ((Pawn) board.getSquare(1, 6).getPiece()).move(board.getGameBoard()[1][4]);
-        } catch (Exception e) {
-            System.out.println("Illegal move detected \n");
-        }
-
-        Player p = new Player(true);
-        p.takeTurn();
-
-        System.out.println(board);
-
-         */
-
     }
 
 }
