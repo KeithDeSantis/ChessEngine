@@ -16,7 +16,7 @@ public class Main {
                 System.out.println("White Turn");
                 board.printWhitesBoard();
             }
-
+            if (!board.kingsAlive()) break;
             System.out.println("Black Turn");
             board.printBlacksBoard();
             while(!blackPlayer.takeTurn()) {
@@ -27,7 +27,7 @@ public class Main {
         }
 
         board.printWhitesBoard();
-        System.out.println("Game is over.");
+        System.out.println("The game is over, " + board.checkForWinner() + " has won!");
 
     }
 

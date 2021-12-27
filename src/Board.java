@@ -302,4 +302,30 @@ public class Board {
 
         System.out.println(strBld.toString());
     }
+
+    public String checkForWinner() {
+
+        int numWhiteKings = 0;
+        int numBlackKings = 0;
+
+        for (int x = 0; x < 8; x ++) {
+            for (int y = 0; y < 8; y ++) {
+
+                if (!(gameBoard[x][y].getPiece() == null)) {
+                    if (gameBoard[x][y].getPiece().getType() == "King") {
+
+                        if (gameBoard[x][y].getPiece().getTeam()) numBlackKings++;
+                        else numWhiteKings++;
+
+                    }
+                }
+
+            }
+        }
+
+        if (numBlackKings == 1 && numWhiteKings == 0) return "Black";
+        if (numWhiteKings == 1 && numBlackKings == 0) return "White";
+        else return "No Winner";
+
+    }
 }
