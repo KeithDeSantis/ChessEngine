@@ -9,7 +9,7 @@ public class Player {
         this.team = team;
     }
 
-    public Move takeTurn() {
+    public Move takeTurn() { //TODO Add better input system and input string checking/parsing
 
         Board board = Board.getBoard();
 

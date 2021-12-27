@@ -10,10 +10,10 @@ public class Main {
         while (board.kingsAlive()) {
 
             System.out.println("White Turn");
-            board.printBoard();
+            board.printWhitesBoard();
             whitePlayer.takeTurn();
             System.out.println("Black Turn");
-            board.printBoard();
+            board.printBlacksBoard();
             blackPlayer.takeTurn();
 
         }

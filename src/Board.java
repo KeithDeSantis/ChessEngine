@@ -123,7 +123,7 @@ public class Board {
 
         StringBuilder strBld = new StringBuilder();
 
-        for (int y = 0; y < 8; y++) {
+        for (int y = 7; y >= 0; y--) {
             strBld.append(y + " ");
             for (int x = 0; x < 8; x++) {
                 switch (gameBoard[x][y].typeOfOccupant()) {
@@ -167,7 +167,7 @@ public class Board {
         }
         strBld.append("  0  1  2  3  4  5  6  7");
         return strBld.toString();
-    }
+    } // Old version of printing which was white forward facing
 
     public boolean kingsAlive() {
 
@@ -199,7 +199,107 @@ public class Board {
         return false;
     }
 
-    public void printBoard() {
-        System.out.println(this);
+    public void printWhitesBoard() {
+
+            StringBuilder strBld = new StringBuilder();
+
+            for (int y = 0; y < 8; y++) {
+                strBld.append(y + " ");
+                for (int x = 0; x < 8; x++) {
+                    switch (gameBoard[x][y].typeOfOccupant()) {
+
+                        case "Pawn":
+                            if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BP");
+                            else strBld.append("WP");
+                            break;
+                        case "Rook":
+                            if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BR");
+                            else strBld.append("WR");
+                            break;
+                        case "Knight":
+                            if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BN");
+                            else strBld.append("WN");
+                            break;
+                        case "Bishop":
+                            if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BB");
+                            else strBld.append("WB");
+                            break;
+                        case "Queen":
+                            if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BQ");
+                            else strBld.append("WQ");
+                            break;
+                        case "King":
+                            if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BK");
+                            else strBld.append("WK");
+                            break;
+                        case "Empty":
+                            strBld.append("--");
+                            break;
+                        default:
+                            strBld.append("%%");
+                            break;
+
+                    }
+                    strBld.append(" ");
+                }
+
+                strBld.append("\n");
+
+            }
+            strBld.append("  0  1  2  3  4  5  6  7");
+
+            System.out.println(strBld.toString());
+        }
+
+    public void printBlacksBoard() {
+
+        StringBuilder strBld = new StringBuilder();
+
+        for (int y = 7; y >= 0; y--) {
+            strBld.append(y + " ");
+            for (int x = 0; x < 8; x++) {
+                switch (gameBoard[x][y].typeOfOccupant()) {
+
+                    case "Pawn":
+                        if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BP");
+                        else strBld.append("WP");
+                        break;
+                    case "Rook":
+                        if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BR");
+                        else strBld.append("WR");
+                        break;
+                    case "Knight":
+                        if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BN");
+                        else strBld.append("WN");
+                        break;
+                    case "Bishop":
+                        if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BB");
+                        else strBld.append("WB");
+                        break;
+                    case "Queen":
+                        if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BQ");
+                        else strBld.append("WQ");
+                        break;
+                    case "King":
+                        if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BK");
+                        else strBld.append("WK");
+                        break;
+                    case "Empty":
+                        strBld.append("--");
+                        break;
+                    default:
+                        strBld.append("%%");
+                        break;
+
+                }
+                strBld.append(" ");
+            }
+
+            strBld.append("\n");
+
+        }
+        strBld.append("  0  1  2  3  4  5  6  7");
+
+        System.out.println(strBld.toString());
     }
 }
