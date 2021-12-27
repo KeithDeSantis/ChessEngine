@@ -65,22 +65,22 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
                 case 1: // Up Right
                     last = Board.getBoard().getSquare(last.getxAxis() + 1, last.getyAxis() - 1);
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 2: // Up Left
                     last = Board.getBoard().getSquare(last.getxAxis() - 1, last.getyAxis() - 1);
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 3: // Down Right
                     last = Board.getBoard().getSquare(last.getxAxis() + 1, last.getyAxis() + 1);
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 4: // Down Left
                     last = Board.getBoard().getSquare(last.getxAxis() - 1, last.getyAxis() + 1);
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 default:
                     throw new Exception("Unknown direction of movement");
@@ -121,12 +121,12 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
                 case 1: // Right
                     last = Board.getBoard().getSquare(last.getxAxis() + 1, last.getyAxis());
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 2: // Left
                     last = Board.getBoard().getSquare(last.getxAxis() - 1, last.getyAxis());
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 default:
                     throw new Exception("Unknown direction of movement");
@@ -167,12 +167,12 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
                 case 1: // Up
                     last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() - 1);
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 2: // Down
                     last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() + 1);
                     this.addToPath(last);
-                    if (!(last.getPiece() == null)) this.setClear(false);
+                    if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 default:
                     throw new Exception("Unknown direction of movement");
