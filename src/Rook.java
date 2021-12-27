@@ -14,6 +14,11 @@ public class Rook extends AbsPiece implements IPiece {
         this.setType("Rook");
     }
 
+    /**
+     * Checks if a move to a destination is legal.
+     * @param dest The square the piece is trying to move to.
+     * @return True if the move is legal
+     */
     public boolean canMove(Square dest) {
 
         if (isSameTeam(dest.getPiece())) return false;
@@ -38,6 +43,13 @@ public class Rook extends AbsPiece implements IPiece {
 
     }
 
+    /**
+     * Move the piece to the given destination (if legal)
+     * @param dest the destination square
+     * @return The square that the piece ends on after a successful move
+     * @throws Exception If the destination is illegal to move to
+     * throw an "Invalid Move Exception"
+     */
     public Square move(Square dest) throws Exception{
 
         if (!canMove(dest)) throw new Exception("Invalid move exception");

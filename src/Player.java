@@ -13,7 +13,7 @@ public class Player {
      * Returns true if a valid turn was completed, and records the move in MoveHistory
      * @return True if a legal move was made.
      */
-    public boolean takeTurn() { //TODO Add better input system and input string checking/parsing
+    public boolean takeTurn() {
 
         Board board = Board.getBoard();
 
@@ -21,15 +21,26 @@ public class Player {
 
         System.out.println("Identify first, the piece you want to move and then, where you was it moved to using coordinates and a space between the inputs.\nExample input: 1,6 1,5");
 
-        String move = scanner.nextLine();
-        String[] start = move.split(" ")[0].split(",");
-        String[] end = move.split(" ")[1].split(",");
+
+        boolean wrongInput = true;
         int[] startCoords = new int[2];
-        startCoords[0] = Integer.parseInt(start[0]);
-        startCoords[1] = Integer.parseInt(start[1]);
         int[] endCoords = new int[2];
-        endCoords[0] = Integer.parseInt(end[0]);
-        endCoords[1] = Integer.parseInt(end[1]);
+
+        while(wrongInput) {
+
+            try {
+                String move = scanner.nextLine();
+                String[] start = move.split(" ")[0].split(",");
+                String[] end = move.split(" ")[1].split(",");
+                startCoords[0] = Integer.parseInt(start[0]);
+                startCoords[1] = Integer.parseInt(start[1]);
+                endCoords[0] = Integer.parseInt(end[0]);
+                endCoords[1] = Integer.parseInt(end[1]);
+                wrongInput = false;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please use the form: 'x1,y1 x2,y2' with x1,y1 being the starting piece and x2,y2 being the destination.");
+            }
+        }
 
         try {
 
