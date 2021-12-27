@@ -4,7 +4,7 @@ import java.lang.Math;
 /**
  * Class representing a path a piece must take from one Square to another
  */
-public class Path { //TODO could split into multiple classes of diagonal and horizontal and vertical paths
+public class Path {
 
     private LinkedList<Square> path;
     private boolean isClear; // True if there are no pieces between the start and end of the path
@@ -90,7 +90,7 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
 
         return this;
 
-    } //TODO Need to add checking that start and end are valid squares in the board
+    }
 
     /**
      * Generates a horizontal path from the start to the given square
@@ -136,7 +136,7 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
 
         return this;
 
-    } //TODO Need to add checking that start and end are valid squares in the board
+    }
 
     /**
      * Generates a vertical path from the start to the given square
@@ -182,7 +182,7 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
 
         return this;
 
-    } //TODO Need to add checking that start and end are valid squares in the board
+    }
 
     public Path generatePawnPath(Square end) throws Exception {
         Square first = this.getPath().getFirst();
@@ -240,7 +240,7 @@ public class Path { //TODO could split into multiple classes of diagonal and hor
             else throw new Exception("Invalid pawn movement.");
         }
 
-    } //TODO Need to add checking that start and end are valid squares in the board
+    }
 
     public Path addToPath(Square step) {
 

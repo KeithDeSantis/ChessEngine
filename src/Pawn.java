@@ -24,7 +24,7 @@ public class Pawn extends AbsPiece implements IPiece {
      */
     public boolean canMove(Square dest) {
 
-        if (isSameTeam(dest.getPiece())) return false; //TODO added after, can remove all the same team checking
+        if (isSameTeam(dest.getPiece())) return false;
 
         Path path = new Path(this.getSquare());
 
