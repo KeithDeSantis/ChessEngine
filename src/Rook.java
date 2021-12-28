@@ -64,6 +64,96 @@ public class Rook extends AbsPiece {
 
     }
 
-    public Square castle() { return this.getSquare(); } //TODO in due time, this seems complicated
+    public Square castle() throws Exception {
+
+        Board board = Board.getBoard();
+        Square kingSpace;
+
+        if (!this.getHasMoved()) {
+
+            if (!this.getTeam()) { // White rook
+
+                kingSpace = board.getSquare(4,7);
+
+                AbsPiece wKing = kingSpace.getPiece();
+
+                Path path = new Path(this.getSquare());
+
+                try {
+                    path.generateHorizontal(kingSpace);
+                } catch (Exception e) { return this.getSquare(); }
+
+                if (!kingSpace.getPiece().getHasMoved() && board.getSquare(4, 7).getPiece().getType().equals("King")) { // King hasn't moved and is in right place
+
+                    if (this.getSquare().getxAxis() == 7) { // Rook on 7 x coord
+
+                        if (path.getIsClear()) { // if there are no piece between
+
+                            board.getSquare(5,7).setPiece(this); // the actual swap occurs
+                            wKing.setSquare(board.getSquare(6,7));
+                            this.setSquare(board.getSquare(5,7));
+
+                        }
+                    }
+
+                    else { // Rook on 0 x coord
+
+                        if (path.getIsClear()) { // if there are no piece between
+
+                            board.getSquare(3,7).setPiece(this); // the actual swap occurs
+                            wKing.setSquare(board.getSquare(2,7));
+                            this.setSquare(board.getSquare(3,7));
+
+                        }
+
+                    }
+
+                }
+
+            }
+            else { // Black rook
+
+                kingSpace = board.getSquare(4,0);
+
+                AbsPiece wKing = kingSpace.getPiece();
+
+                Path path = new Path(this.getSquare());
+
+                try {
+                    path.generateHorizontal(kingSpace);
+                } catch (Exception e) { return this.getSquare(); }
+
+                if (!kingSpace.getPiece().getHasMoved() && kingSpace.getPiece().getType().equals("King")) { // King hasn't moved and is in right place
+
+                    if (this.getSquare().getxAxis() == 7) { // Rook on 7 x coord
+
+                        if (path.getIsClear()) { // if there are no piece between
+
+                            board.getSquare(5,0).setPiece(this); // the actual swap occurs
+                            wKing.setSquare(board.getSquare(6,0));
+                            this.setSquare(board.getSquare(5,0));
+
+                        }
+                    }
+
+                    else { // Rook on 0 x coord
+
+                        if (path.getIsClear()) { // if there are no piece between
+
+                            board.getSquare(3,0).setPiece(this); // the actual swap occurs
+                            wKing.setSquare(board.getSquare(2,0));
+                            this.setSquare(board.getSquare(3,0));
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+        return this.getSquare();
+    } //TODO make castling cleaner
 
 }
