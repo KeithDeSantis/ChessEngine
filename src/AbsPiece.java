@@ -1,6 +1,6 @@
 public abstract class AbsPiece implements IPiece {
 
-    // boolean where 0 is white, 1 is black team
+    // boolean  where 0 is white, 1 is black team
     private boolean team;
     // 0 if not in play, 1 if in play
     private boolean isLive;
