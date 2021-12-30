@@ -10,24 +10,24 @@ public class Main {
 
         while (board.kingsAlive()) {
 
-            System.out.println("White Turn");
+            System.out.println("\nWhite Turn");
             board.printWhitesBoard();
             while(!whitePlayer.takeTurn()){
-                System.out.println("White Turn");
+                System.out.println("\nWhite Turn");
                 board.printWhitesBoard();
             }
             if (!board.kingsAlive()) break;
-            System.out.println("Black Turn");
+            System.out.println("\nBlack Turn");
             board.printBlacksBoard();
             while(!blackPlayer.takeTurn()) {
-                System.out.println("Black Turn");
+                System.out.println("\nBlack Turn");
                 board.printBlacksBoard();
             }
 
         }
 
         board.printWhitesBoard();
-        System.out.println("The game is over, " + board.checkForWinner() + " has won!");
+        System.out.println("\nThe game is over, " + board.checkForWinner() + " has won!");
 
     }
 
