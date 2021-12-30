@@ -98,6 +98,12 @@ public class Board {
         return BoardSingletonHelper.board;
     }
 
+    /**
+     * Returns a specific square
+     * @param xAxis the xAxis of the square you want
+     * @param yAxis the yAxis of the square you want
+     * @return the desired square
+     */
     public Square getSquare(int xAxis, int yAxis) throws Exception {
 
         if (xAxis < 0 || xAxis > 7 || yAxis < 0 || yAxis > 7) throw new Exception("Invalid Square");
@@ -106,6 +112,13 @@ public class Board {
 
     }
 
+    /**
+     * Replaces a given square's piece with a new piece
+     * @param xAxis the xAxis of the given square
+     * @param yAxis the yAxis of the given square
+     * @param piece the piece being placed on said square
+     * @return the edited Square
+     */
     public Square editSquare(int xAxis, int yAxis, AbsPiece piece) {
 
         this.gameBoard[xAxis][yAxis].setPiece(piece);
@@ -118,6 +131,9 @@ public class Board {
         return this.gameBoard;
     }
 
+    /**
+     * An overrideen toString to print out the gameboard from the white player's point of view
+     */
     @Override
     public String toString() {
 
@@ -169,6 +185,10 @@ public class Board {
         return strBld.toString();
     } // Old version of printing which was white forward facing
 
+    /**
+     * Checks if both kings are alive
+     * @return True if there is exactly 1 white king and 1 black king
+     */
     public boolean kingsAlive() {
 
         int numWhiteKings = 0;
@@ -199,6 +219,9 @@ public class Board {
         return false;
     }
 
+    /**
+     * Prints out the board from the white player's POV
+     */
     public void printWhitesBoard() {
 
             StringBuilder strBld = new StringBuilder();
@@ -251,6 +274,9 @@ public class Board {
             System.out.println(strBld.toString());
         }
 
+    /**
+     * Prints out the board from the black player's POV
+     */
     public void printBlacksBoard() {
 
         StringBuilder strBld = new StringBuilder();
@@ -303,6 +329,10 @@ public class Board {
         System.out.println(strBld.toString());
     }
 
+    /**
+     * Check if one of the players has won
+     * @return "White" if white has won, "Black" if black has won, "No winner" if neither has won
+     */
     public String checkForWinner() {
 
         int numWhiteKings = 0;
