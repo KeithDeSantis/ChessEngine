@@ -8,4 +8,4 @@ The program makes uses of a couple design patterns, namely the singleton pattern
 
 ## Gameplay
 
-The UI and UX is currently very rough and only done through ASCII StdIn/StdOut as I focus on the backend and construction of the engine, but I may update it in time.
+The UI and UX is currently very rough and only done through ASCII StdIn/StdOut as I focus on the backend and construction of the engine, but I may update it in time (currently planning on using JavaScript and React for the front end with Java as the backend).
