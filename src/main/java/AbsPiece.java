@@ -1,3 +1,5 @@
+package main.java;
+
 public abstract class AbsPiece implements IPiece {
 
     // boolean  where 0 is white, 1 is black team

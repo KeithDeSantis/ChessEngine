@@ -1,3 +1,5 @@
+package main.java;
+
 public class Move {
 
     public boolean teamWhoMadeMove;

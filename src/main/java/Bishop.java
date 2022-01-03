@@ -1,3 +1,5 @@
+package main.java;
+
 public class Bishop extends AbsPiece {
 
     public Bishop(boolean team, boolean isLive, Square square, boolean hasMoved) {
@@ -5,13 +7,13 @@ public class Bishop extends AbsPiece {
         this.setLive(isLive);
         this.setSquare(square);
         this.setHasMoved(hasMoved);
-        this.setType("Bishop");
+        this.setType("main.java.Bishop");
 
     }
     public Bishop(boolean team, Square square) {
         this.setTeam(team);
         this.setSquare(square);
-        this.setType("Bishop");
+        this.setType("main.java.Bishop");
     }
 
     /**
@@ -34,11 +36,11 @@ public class Bishop extends AbsPiece {
     }
 
     /**
-     * Move the piece to the given destination (if legal)
+     * main.java.Move the piece to the given destination (if legal)
      * @param dest the destination square
      * @return The square that the piece ends on after a successful move
      * @throws Exception If the destination is illegal to move to
-     * throw an "Invalid Move Exception"
+     * throw an "Invalid main.java.Move Exception"
      */
     public Square move(Square dest) throws Exception{
 

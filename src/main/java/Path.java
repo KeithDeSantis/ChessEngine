@@ -1,8 +1,10 @@
+package main.java;
+
 import java.util.*;
 import java.lang.Math;
 
 /**
- * Class representing a path a piece must take from one Square to another
+ * Class representing a path a piece must take from one main.java.Square to another
  */
 public class Path {
 
@@ -16,7 +18,7 @@ public class Path {
     }
 
     // ***NOTE*** When generating paths, we are assuming any piece in the destination square is of the opposing team,
-    // since that is checked in the canMove function of AbsPiece, before any paths are generated.
+    // since that is checked in the canMove function of main.java.AbsPiece, before any paths are generated.
 
     /**
      * Generates a diagonal path from the start to the given square
@@ -106,8 +108,8 @@ public class Path {
         if (first.getyAxis() != end.getyAxis()) throw new Exception("Invalid horizontal endpoints.");
 
         /*
-        1: Move to the right (+ X)
-        2: Move to the left (- X)
+        1: main.java.Move to the right (+ X)
+        2: main.java.Move to the left (- X)
          */
 
         int direction;
@@ -152,8 +154,8 @@ public class Path {
         if (first.getxAxis() != end.getxAxis()) throw new Exception("Invalid vertical endpoints.");
 
         /*
-        1: Move up (- Y)
-        2: Move down (+ Y)
+        1: main.java.Move up (- Y)
+        2: main.java.Move down (+ Y)
          */
 
         int direction;
@@ -201,7 +203,7 @@ public class Path {
 
         boolean destIsEmpty = Board.getBoard().getSquare(endXAxis, endYAxis).getPiece() == null;
 
-        if (direction) { // Black Pawn
+        if (direction) { // Black main.java.Pawn
             if (startXAxis == endXAxis && startYAxis == endYAxis - 1) {
                 if (!destIsEmpty) throw new Exception("Invalid pawn movement.");
                 this.addToPath(end);
@@ -220,7 +222,7 @@ public class Path {
             }
             else throw new Exception("Invalid pawn movement.");
         }
-        else { // White Pawn
+        else { // White main.java.Pawn
             if (startXAxis == endXAxis && startYAxis == endYAxis + 1) {
                 if (!destIsEmpty) throw new Exception("Invalid pawn movement.");
                 this.addToPath(end);

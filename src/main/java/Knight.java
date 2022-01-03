@@ -1,3 +1,5 @@
+package main.java;
+
 import java.lang.Math;
 
 public class Knight extends AbsPiece {
@@ -7,13 +9,13 @@ public class Knight extends AbsPiece {
         this.setLive(isLive);
         this.setSquare(square);
         this.setHasMoved(hasMoved);
-        this.setType("Knight");
+        this.setType("main.java.Knight");
 
     }
     public Knight(boolean team, Square square) {
         this.setTeam(team);
         this.setSquare(square);
-        this.setType("Knight");
+        this.setType("main.java.Knight");
     }
 
     /**
@@ -38,11 +40,11 @@ public class Knight extends AbsPiece {
     }
 
     /**
-     * Move the piece to the given destination (if legal)
+     * main.java.Move the piece to the given destination (if legal)
      * @param dest the destination square
      * @return The square that the piece ends on after a successful move
      * @throws Exception If the destination is illegal to move to
-     * throw an "Invalid Move Exception"
+     * throw an "Invalid main.java.Move Exception"
      */
     public Square move(Square dest) throws Exception{
 
