@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class Agent extends Player {
 
     private float difficulty;
+    private Player opponent;
 
-    public Agent(boolean team, int difficulty) {
+    public Agent(boolean team, int difficulty, Player opponent) {
         super(team);
+        this.opponent = opponent;
         this.difficulty = difficulty * 1000 + 1; // TODO Testing to determine difficulty and what coefficient should be
     }
 
@@ -78,9 +80,37 @@ public class Agent extends Player {
 
         Board simulatedBoard = board.duplicateBoard();
 
-        // Method to get random move is in Player.java
+        while(simulatedBoard.kingsAlive()) {
 
-        return false;
+            try {
+                this.opponent.chooseRandomMove(simulatedBoard);
+            } catch (Exception e) {System.out.println("Tried to access square outside of board."); return false; }
+            if (!simulatedBoard.kingsAlive()) break;
+            try {
+                this.chooseRandomMove(simulatedBoard);
+            } catch (Exception e) {System.out.println("Tried to access square outside of board."); return false; }
+
+        }
+
+        return checkAgentWonHelper(simulatedBoard);
+    }
+
+    /**
+     * Helper to interpret board.checkForWinner() output
+     * @param board the board
+     * @return true if the Agent won
+     */
+    public boolean checkAgentWonHelper(Board board) {
+
+        if (board.checkForWinner().equals("Black")) {
+            return this.team;
+        }
+        else if (board.checkForWinner().equals("White")) {
+            return !this.team;
+        }
+
+        System.out.println("Got to a line you shouldn't have in checkAgentWonHelper!!\n");
+        return true; //should never get here
     }
 
     /**
