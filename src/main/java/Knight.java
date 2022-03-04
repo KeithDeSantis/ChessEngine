@@ -61,4 +61,14 @@ public class Knight extends AbsPiece {
 
     }
 
+    /**
+     * Deep copies this piece
+     * @return the deep copy
+     */
+    @Override
+    public Knight duplicatePiece() {
+        return new Knight(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+    }
+
+
 }

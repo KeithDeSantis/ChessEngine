@@ -72,4 +72,13 @@ public class Queen extends AbsPiece {
 
     }
 
+    /**
+     * Deep copies this piece
+     * @return the deep copy
+     */
+    @Override
+    public Queen duplicatePiece() {
+        return new Queen(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+    }
+
 }

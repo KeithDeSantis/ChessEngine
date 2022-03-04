@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+
 public abstract class AbsPiece implements IPiece {
 
     // boolean  where 0 is white, 1 is black team
@@ -23,6 +25,37 @@ public abstract class AbsPiece implements IPiece {
 
         else return !otherPiece.getTeam();
 
+    }
+
+    /**
+     * Checks (very badly) and finds all possible moves that the piece can make.
+     * @return A list of all possible moves
+     * @throws Exception Shouldn't ever happen, but if it tries to access a non-existent square
+     */
+    public ArrayList<Move> getAllMoves() throws Exception {
+
+        ArrayList<Move> allMoves = new ArrayList<Move>();
+
+        for (int row = 0; row < 8; row ++) {
+            for (int col = 0; col < 8; col ++) {
+
+                if (this.canMove(Board.getBoard().getSquare(row,col))) {
+                    allMoves.add(new Move(this.team, this, this.square, Board.getBoard().getSquare(row,col)));
+                }
+
+            }
+        }
+
+        return allMoves;
+    }
+
+    /**
+     * Creates a deep copy of this piece
+     * MUST BE OVERRIDEN IN EACH SUBCLASS
+     * @return the deepcopy
+     */
+    public AbsPiece duplicatePiece() {
+        return new Pawn(false,false,null,false);
     }
 
     public boolean getTeam() {

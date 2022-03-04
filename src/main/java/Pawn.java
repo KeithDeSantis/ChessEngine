@@ -109,6 +109,15 @@ public class Pawn extends AbsPiece {
 
     }
 
+    /**
+     * Deep copies this piece
+     * @return the deep copy
+     */
+    @Override
+    public Pawn duplicatePiece() {
+        return new Pawn(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+    }
+
 
 
 } //TODO add En Passant

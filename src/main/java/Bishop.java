@@ -56,4 +56,13 @@ public class Bishop extends AbsPiece {
 
     }
 
+    /**
+     * Deep copies this piece
+     * @return the deep copy
+     */
+    @Override
+    public Bishop duplicatePiece() {
+        return new Bishop(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+    }
+
 }

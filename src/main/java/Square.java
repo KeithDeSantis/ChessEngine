@@ -60,4 +60,12 @@ public class Square {
         return this.getPiece().getType();
 
     }
+
+    /**
+     * Deep copies this square
+     * @return the deep copy
+     */
+    public Square duplicateSquare() {
+        return new Square(this.piece.duplicatePiece(), this.xAxis, this.yAxis);
+    }
 }

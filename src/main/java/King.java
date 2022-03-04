@@ -72,4 +72,13 @@ public class King extends AbsPiece {
 
     }
 
+    /**
+     * Deep copies this piece
+     * @return the deep copy
+     */
+    @Override
+    public King duplicatePiece() {
+        return new King(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+    }
+
 }

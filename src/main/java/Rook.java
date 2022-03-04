@@ -158,4 +158,13 @@ public class Rook extends AbsPiece {
         return this.getSquare();
     } //TODO make castling cleaner
 
+    /**
+     * Deep copies this piece
+     * @return the deep copy
+     */
+    @Override
+    public Rook duplicatePiece() {
+        return new Rook(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+    }
+
 }

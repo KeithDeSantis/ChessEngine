@@ -1,5 +1,8 @@
 package main.java;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -62,6 +65,42 @@ public class Player {
             return false;
         }
 
+    }
+
+    /**
+     * Gets all of the player's current pieces
+     * @return A list of all the current pieces
+     * @throws Exception Shouldn't happen, but throws expception if it tries to access a non-existent square.
+     */
+    public ArrayList<AbsPiece> getAllPieces() throws Exception {
+
+        ArrayList<AbsPiece> allPieces = new ArrayList<AbsPiece>();
+
+        for (int row = 0; row < 8; row ++) {
+            for (int col = 0; col < 8; col ++) {
+
+                if (Board.getBoard().getSquare(row,col).getPiece().getTeam() == this.team) {
+                    allPieces.add(Board.getBoard().getSquare(row,col).getPiece());
+                }
+
+            }
+        }
+
+        return allPieces;
+
+    }
+
+    /**
+     * Chooses a random possible move
+     * @return the random possible move
+     * @throws Exception wont happen
+     */
+    public Move choseRandomMove() throws Exception {
+        Random random = new Random();
+        ArrayList<AbsPiece> allPieces = this.getAllPieces();
+        AbsPiece randPiece = allPieces.get(random.nextInt(allPieces.size()));
+        ArrayList<Move> allMoves = randPiece.getAllMoves();
+        return allMoves.get(random.nextInt(allMoves.size()));
     }
 
 }

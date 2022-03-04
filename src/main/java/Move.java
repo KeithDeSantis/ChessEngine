@@ -14,4 +14,20 @@ public class Move {
         this.endingSquare = endingSquare;
     }
 
+    public int getStartRow() {
+        return this.startingSquare.getxAxis();
+    }
+
+    public int getStartCol() {
+        return this.startingSquare.getyAxis();
+    }
+
+    public int getEndRow() {
+        return this.endingSquare.getxAxis();
+    }
+
+    public int getEndCol() {
+        return this.endingSquare.getyAxis();
+    }
+
 }

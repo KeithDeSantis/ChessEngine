@@ -133,6 +133,30 @@ public class Board {
     }
 
     /**
+     * Creates a Board object that is a copy of this board but with different references
+     * @return the copy
+     */
+    public Board duplicateBoard() {
+        Square[][] copyBoard = new Square[8][8];
+
+        for (int row = 0; row < 8; row++) {
+
+            for (int col = 0; col < 8; col++) {
+
+                try {
+                    copyBoard[row][col] = Board.getBoard().getSquare(row, col).duplicateSquare();
+                } catch (Exception e) { System.out.println("Tried to access square outside board."); return null;}
+
+            }
+
+        }
+
+        Board simulatedBoard = new Board();
+        simulatedBoard.setGameBoard(copyBoard);
+        return simulatedBoard;
+    }
+
+    /**
      * An overrideen toString to print out the gameboard from the white player's point of view
      */
     @Override
@@ -358,5 +382,9 @@ public class Board {
         if (numWhiteKings == 1 && numBlackKings == 0) return "White";
         else return "No Winner";
 
+    }
+
+    public void setGameBoard(Square[][] b) {
+        this.gameBoard = b;
     }
 }
