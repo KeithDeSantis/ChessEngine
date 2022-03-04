@@ -20,7 +20,7 @@ public class Agent extends Player {
         Board board = Board.getBoard();
         ArrayList<AbsPiece> allPieces;
         try {
-            allPieces = this.getAllPieces();
+            allPieces = this.getAllPieces(board);
         } catch(Exception e) { System.out.println("Tried to access square outside board."); return false; }
 
         ArrayList<Move> allMoves = new ArrayList<Move>();

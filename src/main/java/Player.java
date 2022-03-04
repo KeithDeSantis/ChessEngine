@@ -72,15 +72,15 @@ public class Player {
      * @return A list of all the current pieces
      * @throws Exception Shouldn't happen, but throws expception if it tries to access a non-existent square.
      */
-    public ArrayList<AbsPiece> getAllPieces() throws Exception {
+    public ArrayList<AbsPiece> getAllPieces(Board board) throws Exception {
 
         ArrayList<AbsPiece> allPieces = new ArrayList<AbsPiece>();
 
         for (int x = 0; x < 8; x ++) {
             for (int y = 0; y < 8; y ++) {
 
-                if (Board.getBoard().getSquare(x,y).getPiece().getTeam() == this.team) {
-                    allPieces.add(Board.getBoard().getSquare(x,y).getPiece());
+                if (board.getSquare(x,y).getPiece().getTeam() == this.team) {
+                    allPieces.add(board.getSquare(x,y).getPiece());
                 }
 
             }
@@ -92,12 +92,13 @@ public class Player {
 
     /**
      * Chooses a random possible move
+     * @board The board that the move is being chosen from (want to specify in case we're doing AI rollout simulations)
      * @return the random possible move
      * @throws Exception wont happen
      */
-    public Move choseRandomMove() throws Exception {
+    public Move choseRandomMove(Board board) throws Exception {
         Random random = new Random();
-        ArrayList<AbsPiece> allPieces = this.getAllPieces();
+        ArrayList<AbsPiece> allPieces = this.getAllPieces(board);
         AbsPiece randPiece = allPieces.get(random.nextInt(allPieces.size()));
         ArrayList<Move> allMoves = randPiece.getAllMoves();
         return allMoves.get(random.nextInt(allMoves.size()));
