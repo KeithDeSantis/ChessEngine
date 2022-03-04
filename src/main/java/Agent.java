@@ -80,6 +80,10 @@ public class Agent extends Player {
 
         Board simulatedBoard = board.duplicateBoard();
 
+        try {
+            simulatedBoard.getSquare(chosenMove.getStartX(), chosenMove.getStartY()).getPiece().move(board.getGameBoard()[chosenMove.getEndX()][chosenMove.getEndY()]);
+        } catch (Exception e) {System.out.println("Tried to access square outside of board."); return false; }
+
         while(simulatedBoard.kingsAlive()) {
 
             try {
