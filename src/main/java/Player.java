@@ -76,11 +76,11 @@ public class Player {
 
         ArrayList<AbsPiece> allPieces = new ArrayList<AbsPiece>();
 
-        for (int row = 0; row < 8; row ++) {
-            for (int col = 0; col < 8; col ++) {
+        for (int x = 0; x < 8; x ++) {
+            for (int y = 0; y < 8; y ++) {
 
-                if (Board.getBoard().getSquare(row,col).getPiece().getTeam() == this.team) {
-                    allPieces.add(Board.getBoard().getSquare(row,col).getPiece());
+                if (Board.getBoard().getSquare(x,y).getPiece().getTeam() == this.team) {
+                    allPieces.add(Board.getBoard().getSquare(x,y).getPiece());
                 }
 
             }

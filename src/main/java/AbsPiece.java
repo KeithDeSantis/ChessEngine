@@ -36,11 +36,11 @@ public abstract class AbsPiece implements IPiece {
 
         ArrayList<Move> allMoves = new ArrayList<Move>();
 
-        for (int row = 0; row < 8; row ++) {
-            for (int col = 0; col < 8; col ++) {
+        for (int x = 0; x < 8; x ++) {
+            for (int y = 0; y < 8; y ++) {
 
-                if (this.canMove(Board.getBoard().getSquare(row,col))) {
-                    allMoves.add(new Move(this.team, this, this.square, Board.getBoard().getSquare(row,col)));
+                if (this.canMove(Board.getBoard().getSquare(x,y))) {
+                    allMoves.add(new Move(this.team, this, this.square, Board.getBoard().getSquare(x,y)));
                 }
 
             }

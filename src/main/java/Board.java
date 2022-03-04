@@ -139,12 +139,12 @@ public class Board {
     public Board duplicateBoard() {
         Square[][] copyBoard = new Square[8][8];
 
-        for (int row = 0; row < 8; row++) {
+        for (int x = 0; x < 8; x++) {
 
-            for (int col = 0; col < 8; col++) {
+            for (int y = 0; y < 8; y++) {
 
                 try {
-                    copyBoard[row][col] = Board.getBoard().getSquare(row, col).duplicateSquare();
+                    copyBoard[x][y] = Board.getBoard().getSquare(x, y).duplicateSquare();
                 } catch (Exception e) { System.out.println("Tried to access square outside board."); return null;}
 
             }

@@ -53,14 +53,14 @@ public class Agent extends Player {
         }
 
         Move chosenMove = this.findBestMove(allMoves, simulatedUtilities);
-        int startRow = chosenMove.getStartRow();
-        int startCol = chosenMove.getStartCol();
-        int endRow = chosenMove.getEndRow();
-        int endCol = chosenMove.getEndCol();
+        int startX = chosenMove.getStartX();
+        int startY = chosenMove.getStartY();
+        int endX = chosenMove.getEndX();
+        int endY = chosenMove.getEndY();
 
 
         try {
-            board.getSquare(startRow, startCol).getPiece().move(board.getGameBoard()[endRow][endCol]);
+            board.getSquare(startX, startY).getPiece().move(board.getGameBoard()[endX][endY]);
         } catch (Exception e) { System.out.println("Tried to access square outside board."); return false; }
 
         MoveHistory.getMoveHistory().addToHistory(chosenMove);
