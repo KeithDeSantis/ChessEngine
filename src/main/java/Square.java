@@ -66,6 +66,10 @@ public class Square {
      * @return the deep copy
      */
     public Square duplicateSquare() {
+        if (this.piece == null) {
+            return new Square(null, this.xAxis, this.yAxis);
+        }
+
         return new Square(this.piece.duplicatePiece(), this.xAxis, this.yAxis);
     }
 }

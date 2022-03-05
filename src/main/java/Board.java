@@ -145,7 +145,11 @@ public class Board {
 
                 try {
                     copyBoard[x][y] = Board.getBoard().getSquare(x, y).duplicateSquare();
-                } catch (Exception e) { System.out.println("Tried to access square outside board."); return null;}
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Tried to access square outside board IN Board.duplicateBoard().");
+                    System.exit(1);
+                    return null;}
 
             }
 

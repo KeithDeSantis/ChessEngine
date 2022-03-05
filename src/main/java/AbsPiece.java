@@ -32,15 +32,15 @@ public abstract class AbsPiece implements IPiece {
      * @return A list of all possible moves
      * @throws Exception Shouldn't ever happen, but if it tries to access a non-existent square
      */
-    public ArrayList<Move> getAllMoves() throws Exception {
+    public ArrayList<Move> getAllMoves(Board board) throws Exception {
 
         ArrayList<Move> allMoves = new ArrayList<Move>();
 
         for (int x = 0; x < 8; x ++) {
             for (int y = 0; y < 8; y ++) {
 
-                if (this.canMove(Board.getBoard().getSquare(x,y))) {
-                    allMoves.add(new Move(this.team, this, this.square, Board.getBoard().getSquare(x,y)));
+                if (this.canMove(board.getSquare(x,y))) {
+                    allMoves.add(new Move(this.team, this, this.square, board.getSquare(x,y)));
                 }
 
             }

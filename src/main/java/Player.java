@@ -78,8 +78,8 @@ public class Player {
 
         for (int x = 0; x < 8; x ++) {
             for (int y = 0; y < 8; y ++) {
-
-                if (board.getSquare(x,y).getPiece().getTeam() == this.team) {
+                if (board.getSquare(x,y).getPiece() == null) {}
+                else if (board.getSquare(x,y).getPiece().getTeam() == this.team) {
                     allPieces.add(board.getSquare(x,y).getPiece());
                 }
 
@@ -99,10 +99,20 @@ public class Player {
         Random random = new Random();
         ArrayList<AbsPiece> allPieces = this.getAllPieces(board);
         AbsPiece randPiece = allPieces.get(random.nextInt(allPieces.size()));
-        ArrayList<Move> allMoves = randPiece.getAllMoves();
-        Move chosenMove = allMoves.get(random.nextInt(allMoves.size()));
+        if (randPiece instanceof Rook) {
+            int i = 0;
+        }
+        ArrayList<Move> allMoves = randPiece.getAllMoves(board);
 
-        board.getSquare(chosenMove.getStartX(), chosenMove.getStartY()).getPiece().move(board.getGameBoard()[chosenMove.getEndX()][chosenMove.getEndY()]);
+        while (allMoves.size() <= 0) {
+            randPiece = allPieces.get(random.nextInt(allPieces.size()));
+            allMoves = randPiece.getAllMoves(board);
+        }
+
+
+        Move chosenMove = allMoves.get(random.nextInt(allMoves.size()));
+        board.getSquare(chosenMove.getStartX(), chosenMove.getStartY()).setPiece(null);
+        board.getGameBoard()[chosenMove.getEndX()][chosenMove.getEndY()].setPiece(randPiece);
     }
 
 }
