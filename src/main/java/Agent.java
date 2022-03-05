@@ -20,9 +20,10 @@ public class Agent extends Player {
     public boolean takeTurn() {
 
         Board board = Board.getBoard();
+        Board simulatedBoard = board.duplicateBoard();
         ArrayList<AbsPiece> allPieces;
         try {
-            allPieces = this.getAllPieces(board);
+            allPieces = this.getAllPieces(simulatedBoard);
         } catch(Exception e) {
             e.printStackTrace();
             System.out.println("Tried to access square outside board IN Agent.takeTurn().");
@@ -34,7 +35,7 @@ public class Agent extends Player {
         ArrayList<Double> simulatedUtilities = new ArrayList<Double>(); // This will hold the win % of each move
         for (AbsPiece allPiece : allPieces) {
             try {
-                allMoves.addAll(allPiece.getAllMoves(board));
+                allMoves.addAll(allPiece.getAllMoves(simulatedBoard));
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Tried to access square outside board IN Agent.takeTurn() (2nd exception).");
@@ -105,7 +106,6 @@ public class Agent extends Player {
 
             try {
                 this.opponent.chooseRandomMove(simulatedBoard);
-                simulatedBoard.printBlacksBoard();//TODO
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Tried to access square outside of board IN Agent.simulateGame() (2nd Exception).");
@@ -114,7 +114,6 @@ public class Agent extends Player {
             if (!simulatedBoard.kingsAlive()) break;
             try {
                 this.chooseRandomMove(simulatedBoard);
-                simulatedBoard.printBlacksBoard(); //TODO
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Tried to access square outside of board IN Agent.simulateGame() (3rd Exception).");

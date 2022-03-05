@@ -21,7 +21,7 @@ public class Rook extends AbsPiece {
      * @param dest The square the piece is trying to move to.
      * @return True if the move is legal
      */
-    public boolean canMove(Square dest) {
+    public boolean canMove(Square dest, Board board) {
 
         if (isSameTeam(dest.getPiece())) return false;
 
@@ -32,10 +32,10 @@ public class Rook extends AbsPiece {
         boolean canGoVertical = true;
 
         try {
-            hPath.generateHorizontal(dest);
+            hPath.generateHorizontal(dest, board);
         } catch (Exception e) { canGoHorizontal = false; }
         try {
-            vPath.generateVertical(dest);
+            vPath.generateVertical(dest, board);
         } catch (Exception e) { canGoVertical = false; }
 
         if (canGoHorizontal) return hPath.getIsClear();
@@ -54,7 +54,7 @@ public class Rook extends AbsPiece {
      */
     public Square move(Square dest) throws Exception{
 
-        if (!canMove(dest)) throw new Exception("Invalid move exception");
+        if (!canMove(dest, Board.getBoard())) throw new Exception("Invalid move exception");
 
         Board.getBoard().editSquare(this.getSquare().getxAxis(), this.getSquare().getyAxis(), null); // Remove from initial position
 
@@ -82,7 +82,7 @@ public class Rook extends AbsPiece {
                 Path path = new Path(this.getSquare());
 
                 try {
-                    path.generateHorizontal(kingSpace);
+                    path.generateHorizontal(kingSpace, Board.getBoard());
                 } catch (Exception e) { return this.getSquare(); }
 
                 if (!kingSpace.getPiece().getHasMoved() && board.getSquare(4, 7).getPiece().getType().equals("main.java.King")) { // main.java.King hasn't moved and is in right place
@@ -122,7 +122,7 @@ public class Rook extends AbsPiece {
                 Path path = new Path(this.getSquare());
 
                 try {
-                    path.generateHorizontal(kingSpace);
+                    path.generateHorizontal(kingSpace, Board.getBoard());
                 } catch (Exception e) { return this.getSquare(); }
 
                 if (!kingSpace.getPiece().getHasMoved() && kingSpace.getPiece().getType().equals("main.java.King")) { // main.java.King hasn't moved and is in right place
@@ -164,7 +164,7 @@ public class Rook extends AbsPiece {
      */
     @Override
     public Rook duplicatePiece() {
-        return new Rook(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+        return new Rook(this.getTeam(), this.isLive(), null, this.getHasMoved());
     }
 
 }

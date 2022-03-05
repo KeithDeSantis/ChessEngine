@@ -26,7 +26,7 @@ public class Path {
      * @return The given diagonal path
      * @throws Exception If a diagonal path between the start and given end is impossible
      */
-    public Path generateDiagonal(Square end) throws Exception {
+    public Path generateDiagonal(Square end, Board board) throws Exception {
 
         Square first = this.getPath().getFirst();
         Square last = first;
@@ -65,22 +65,22 @@ public class Path {
 
             switch (direction) {
                 case 1: // Up Right
-                    last = Board.getBoard().getSquare(last.getxAxis() + 1, last.getyAxis() - 1);
+                    last = board.getSquare(last.getxAxis() + 1, last.getyAxis() - 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 2: // Up Left
-                    last = Board.getBoard().getSquare(last.getxAxis() - 1, last.getyAxis() - 1);
+                    last = board.getSquare(last.getxAxis() - 1, last.getyAxis() - 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 3: // Down Right
-                    last = Board.getBoard().getSquare(last.getxAxis() + 1, last.getyAxis() + 1);
+                    last = board.getSquare(last.getxAxis() + 1, last.getyAxis() + 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 4: // Down Left
-                    last = Board.getBoard().getSquare(last.getxAxis() - 1, last.getyAxis() + 1);
+                    last = board.getSquare(last.getxAxis() - 1, last.getyAxis() + 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
@@ -100,7 +100,7 @@ public class Path {
      * @return The given horizontal path
      * @throws Exception If a horizontal path between the start and given end is impossible
      */
-    public Path generateHorizontal(Square end) throws Exception {
+    public Path generateHorizontal(Square end, Board board) throws Exception {
 
         Square first = this.getPath().getFirst();
         Square last = first;
@@ -121,12 +121,12 @@ public class Path {
 
             switch (direction) {
                 case 1: // Right
-                    last = Board.getBoard().getSquare(last.getxAxis() + 1, last.getyAxis());
+                    last = board.getSquare(last.getxAxis() + 1, last.getyAxis());
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 2: // Left
-                    last = Board.getBoard().getSquare(last.getxAxis() - 1, last.getyAxis());
+                    last = board.getSquare(last.getxAxis() - 1, last.getyAxis());
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
@@ -146,7 +146,7 @@ public class Path {
      * @return The given vertical path
      * @throws Exception If a vertical path between the start and given end is impossible
      */
-    public Path generateVertical(Square end) throws Exception {
+    public Path generateVertical(Square end, Board board) throws Exception {
 
         Square first = this.getPath().getFirst();
         Square last = first;
@@ -167,12 +167,12 @@ public class Path {
 
             switch (direction) {
                 case 1: // Up
-                    last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() - 1);
+                    last = board.getSquare(last.getxAxis(), last.getyAxis() - 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
                 case 2: // Down
-                    last = Board.getBoard().getSquare(last.getxAxis(), last.getyAxis() + 1);
+                    last = board.getSquare(last.getxAxis(), last.getyAxis() + 1);
                     this.addToPath(last);
                     if (!(last.getPiece() == null) && !(last == end)) this.setClear(false);
                     break;
@@ -186,7 +186,7 @@ public class Path {
 
     }
 
-    public Path generatePawnPath(Square end) throws Exception {
+    public Path generatePawnPath(Square end, Board board) throws Exception {
         Square first = this.getPath().getFirst();
 
         /*
@@ -201,7 +201,7 @@ public class Path {
         int endXAxis = end.getxAxis();
         int endYAxis = end.getyAxis();
 
-        boolean destIsEmpty = Board.getBoard().getSquare(endXAxis, endYAxis).getPiece() == null;
+        boolean destIsEmpty = board.getSquare(endXAxis, endYAxis).getPiece() == null;
 
         if (direction) { // Black main.java.Pawn
             if (startXAxis == endXAxis && startYAxis == endYAxis - 1) {
@@ -211,7 +211,7 @@ public class Path {
             }
             else if (startXAxis == endXAxis && startYAxis == endYAxis - 2 && !this.getPath().getFirst().getPiece().getHasMoved()) {
                 if (!destIsEmpty) throw new Exception("Invalid pawn movement.");
-                if (!(Board.getBoard().getSquare(startXAxis, startYAxis + 1).getPiece() == null)) this.isClear = false; // Only move that needs isClear checked
+                if (!(board.getSquare(startXAxis, startYAxis + 1).getPiece() == null)) this.isClear = false; // Only move that needs isClear checked
                 this.addToPath(end);
                 return this; // BPawn moves 2 forward as first move
             }
@@ -230,7 +230,7 @@ public class Path {
             }
             else if (startXAxis == endXAxis && startYAxis == endYAxis + 2 && !this.getPath().getFirst().getPiece().getHasMoved()) {
                 if (!destIsEmpty) throw new Exception("Invalid pawn movement.");
-                if (!(Board.getBoard().getSquare(startXAxis, startYAxis - 1).getPiece() == null)) this.isClear = false;
+                if (!(board.getSquare(startXAxis, startYAxis - 1).getPiece() == null)) this.isClear = false;
                 this.addToPath(end);
                 return this; // WPawn moves 2 forward as first move
             }

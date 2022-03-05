@@ -39,7 +39,7 @@ public abstract class AbsPiece implements IPiece {
         for (int x = 0; x < 8; x ++) {
             for (int y = 0; y < 8; y ++) {
 
-                if (this.canMove(board.getSquare(x,y))) {
+                if (this.canMove(board.getSquare(x,y), board)) {
                     allMoves.add(new Move(this.team, this, this.square, board.getSquare(x,y)));
                 }
 

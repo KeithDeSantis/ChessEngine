@@ -6,7 +6,7 @@ public interface IPiece {
      * Returns true if the piece can move to the given square
      * @return
      */
-    public boolean canMove(Square dest);
+    public boolean canMove(Square dest, Board board);
 
     /**
      * Moves the piece to the given square

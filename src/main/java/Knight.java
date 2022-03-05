@@ -23,7 +23,7 @@ public class Knight extends AbsPiece {
      * @param dest The square the piece is trying to move to.
      * @return True if the move is legal
      */
-    public boolean canMove(Square dest) {
+    public boolean canMove(Square dest, Board board) {
 
         /*
         For a knight to move, its destination must be +/- 2 in the x and +/- 1 in the y or vice versa
@@ -48,7 +48,7 @@ public class Knight extends AbsPiece {
      */
     public Square move(Square dest) throws Exception{
 
-        if (!canMove(dest)) throw new Exception("Invalid move exception");
+        if (!canMove(dest, Board.getBoard())) throw new Exception("Invalid move exception");
 
         // update the board singleton
         Board.getBoard().editSquare(this.getSquare().getxAxis(), this.getSquare().getyAxis(), null);
@@ -67,7 +67,7 @@ public class Knight extends AbsPiece {
      */
     @Override
     public Knight duplicatePiece() {
-        return new Knight(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+        return new Knight(this.getTeam(), this.isLive(), null, this.getHasMoved());
     }
 
 

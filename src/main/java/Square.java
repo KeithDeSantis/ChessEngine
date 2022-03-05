@@ -70,6 +70,8 @@ public class Square {
             return new Square(null, this.xAxis, this.yAxis);
         }
 
-        return new Square(this.piece.duplicatePiece(), this.xAxis, this.yAxis);
+        Square copy = new Square(this.piece.duplicatePiece(), this.xAxis, this.yAxis);
+        copy.getPiece().setSquare(copy);
+        return copy;
     }
 }

@@ -70,7 +70,7 @@ public class Player {
     /**
      * Gets all of the player's current pieces
      * @return A list of all the current pieces
-     * @throws Exception Shouldn't happen, but throws expception if it tries to access a non-existent square.
+     * @throws Exception Shouldn't happen, but throws exception if it tries to access a non-existent square.
      */
     public ArrayList<AbsPiece> getAllPieces(Board board) throws Exception {
 
@@ -78,7 +78,9 @@ public class Player {
 
         for (int x = 0; x < 8; x ++) {
             for (int y = 0; y < 8; y ++) {
-                if (board.getSquare(x,y).getPiece() == null) {}
+                if (board.getSquare(x,y).getPiece() == null) {
+                    int test = 0;
+                }
                 else if (board.getSquare(x,y).getPiece().getTeam() == this.team) {
                     allPieces.add(board.getSquare(x,y).getPiece());
                 }
@@ -98,10 +100,10 @@ public class Player {
     public void chooseRandomMove(Board board) throws Exception {
         Random random = new Random();
         ArrayList<AbsPiece> allPieces = this.getAllPieces(board);
-        AbsPiece randPiece = allPieces.get(random.nextInt(allPieces.size()));
-        if (randPiece instanceof Rook) {
-            int i = 0;
+        if (allPieces.size() > 16) {
+            int j = 9;
         }
+        AbsPiece randPiece = allPieces.get(random.nextInt(allPieces.size()));
         ArrayList<Move> allMoves = randPiece.getAllMoves(board);
 
         while (allMoves.size() <= 0) {

@@ -21,14 +21,14 @@ public class Bishop extends AbsPiece {
      * @param dest The square the piece is trying to move to.
      * @return True if the move is legal
      */
-    public boolean canMove(Square dest) {
+    public boolean canMove(Square dest, Board board) {
 
         if (isSameTeam(dest.getPiece())) return false;
 
         Path path = new Path(this.getSquare());
 
         try {
-            path.generateDiagonal(dest);
+            path.generateDiagonal(dest, board);
         } catch (Exception e) { return false; }
 
         return path.getIsClear();
@@ -44,7 +44,7 @@ public class Bishop extends AbsPiece {
      */
     public Square move(Square dest) throws Exception{
 
-        if (!canMove(dest)) throw new Exception("Invalid move exception");
+        if (!canMove(dest, Board.getBoard())) throw new Exception("Invalid move exception");
 
         Board.getBoard().editSquare(this.getSquare().getxAxis(), this.getSquare().getyAxis(), null); // Remove from initial position
 
@@ -62,7 +62,7 @@ public class Bishop extends AbsPiece {
      */
     @Override
     public Bishop duplicatePiece() {
-        return new Bishop(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+        return new Bishop(this.getTeam(), this.isLive(), null, this.getHasMoved());
     }
 
 }

@@ -21,7 +21,7 @@ public class Queen extends AbsPiece {
      * @param dest The square the piece is trying to move to.
      * @return True if the move is legal
      */
-    public boolean canMove(Square dest) {
+    public boolean canMove(Square dest, Board board) {
 
         if (isSameTeam(dest.getPiece())) return false;
 
@@ -34,13 +34,13 @@ public class Queen extends AbsPiece {
         boolean canGoDiagonal = true;
 
         try {
-            hPath.generateHorizontal(dest);
+            hPath.generateHorizontal(dest, board);
         } catch (Exception e) { canGoHorizontal = false; }
         try {
-            vPath.generateVertical(dest);
+            vPath.generateVertical(dest, board);
         } catch (Exception e) { canGoVertical = false; }
         try {
-            dPath.generateDiagonal(dest);
+            dPath.generateDiagonal(dest, board);
         } catch (Exception e) { canGoDiagonal = false; }
 
         if (canGoHorizontal) return hPath.getIsClear();
@@ -60,7 +60,7 @@ public class Queen extends AbsPiece {
      */
     public Square move(Square dest) throws Exception{
 
-        if (!canMove(dest)) throw new Exception("Invalid move exception");
+        if (!canMove(dest, Board.getBoard())) throw new Exception("Invalid move exception");
 
         Board.getBoard().editSquare(this.getSquare().getxAxis(), this.getSquare().getyAxis(), null); // Remove from initial position
 
@@ -78,7 +78,7 @@ public class Queen extends AbsPiece {
      */
     @Override
     public Queen duplicatePiece() {
-        return new Queen(this.getTeam(), this.isLive(), this.getSquare(), this.getHasMoved());
+        return new Queen(this.getTeam(), this.isLive(), null, this.getHasMoved());
     }
 
 }
