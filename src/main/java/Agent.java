@@ -11,7 +11,7 @@ public class Agent extends Player {
     public Agent(boolean team, int difficulty, Player opponent) {
         super(team);
         this.opponent = opponent;
-        this.difficulty = difficulty * 1000 + 1; // TODO Testing to determine difficulty and what coefficient should be
+        this.difficulty = difficulty * 100 + 1; // TODO Testing to determine difficulty and what coefficient should be
     }
 
     /**
@@ -46,7 +46,9 @@ public class Agent extends Player {
             }
         }
 
-        int numSimulationsPerMove = (int) Math.ceil(allMoves.size()/this.difficulty);
+        // TODO seems like allMoves is not actually getting all possible moves
+
+        int numSimulationsPerMove = (int) Math.ceil(this.difficulty/allMoves.size());
 
         for (Move curMove : allMoves) {
 
