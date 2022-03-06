@@ -11,7 +11,7 @@ public class Agent extends Player {
     public Agent(boolean team, int difficulty, Player opponent) {
         super(team);
         this.opponent = opponent;
-        this.difficulty = difficulty * 100 + 1; // TODO Testing to determine difficulty and what coefficient should be
+        this.difficulty = difficulty * 50 + 1; // TODO Testing to determine difficulty and what coefficient should be
     }
 
     /**
@@ -20,7 +20,8 @@ public class Agent extends Player {
     @Override
     public boolean takeTurn() {
 
-        System.out.println("\nCalculating Move......\n");
+        System.out.println("\nCalculating Move......");
+        long start = System.currentTimeMillis();
 
         Board board = Board.getBoard();
         Board simulatedBoard = board.duplicateBoard();
@@ -45,8 +46,6 @@ public class Agent extends Player {
                 System.exit(1);
             }
         }
-
-        // TODO seems like allMoves is not actually getting all possible moves
 
         int numSimulationsPerMove = (int) Math.ceil(this.difficulty/allMoves.size());
 
@@ -83,10 +82,16 @@ public class Agent extends Player {
 
         MoveHistory.getMoveHistory().addToHistory(chosenMove);
 
+        long end = System.currentTimeMillis();
+
+        long timeTaken = end - start;
+
+        System.out.println(timeTaken/1000 + " second(s) taken to find move.\n");
+
         return true;
     }
 
-    /**
+    /**TODO set has moved for simulation pieces
      * Simulates random games from that move
      * @param board Copy of the board
      * @param chosenMove Move chosen by Agent
@@ -104,6 +109,7 @@ public class Agent extends Player {
             startSquare.setPiece(null);
             endSquare.setPiece(movedPiece);
             movedPiece.setSquare(endSquare);
+            movedPiece.setHasMoved(true);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Tried to access square outside of board IN Agent.simulateGame().");

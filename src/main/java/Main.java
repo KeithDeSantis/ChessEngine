@@ -37,7 +37,7 @@ public class Main {
             }
             if (!board.kingsAlive()) break;
             System.out.println("\nBlack Turn");
-            board.printBlacksBoard();
+            if (gameType.equals("PvP")) board.printBlacksBoard(); // Don't want to print the AI's board everytime, its just confusing looking
             while (!blackPlayer.takeTurn()) {
                 System.out.println("\nBlack Turn");
                 board.printBlacksBoard();

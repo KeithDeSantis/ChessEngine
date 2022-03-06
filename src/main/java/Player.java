@@ -24,7 +24,7 @@ public class Player {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Identify first, the piece you want to move and then, where you was it moved to using coordinates and a space between the inputs.\nExample input: 1,6 1,5");
+        System.out.println("Identify the piece you want to move first and then where you want it moved to using coordinates and a space between the inputs.\nExample input: 1,6 1,5");
 
 
         boolean wrongInput = true;
@@ -115,6 +115,7 @@ public class Player {
         startSquare.setPiece(null);
         endSquare.setPiece(randPiece);
         randPiece.setSquare(endSquare);
+        randPiece.setHasMoved(true);
     }
 
     /**
