@@ -79,7 +79,7 @@ public class Player {
         for (int x = 0; x < 8; x ++) {
             for (int y = 0; y < 8; y ++) {
                 if (board.getSquare(x,y).getPiece() == null) {
-                    int test = 0;
+                    int dummy = 0;
                 }
                 else if (board.getSquare(x,y).getPiece().getTeam() == this.team) {
                     allPieces.add(board.getSquare(x,y).getPiece());
@@ -100,9 +100,6 @@ public class Player {
     public void chooseRandomMove(Board board) throws Exception {
         Random random = new Random();
         ArrayList<AbsPiece> allPieces = this.getAllPieces(board);
-        if (allPieces.size() > 16) {
-            int j = 9;
-        }
         AbsPiece randPiece = allPieces.get(random.nextInt(allPieces.size()));
         ArrayList<Move> allMoves = randPiece.getAllMoves(board);
 
@@ -113,8 +110,23 @@ public class Player {
 
 
         Move chosenMove = allMoves.get(random.nextInt(allMoves.size()));
-        board.getSquare(chosenMove.getStartX(), chosenMove.getStartY()).setPiece(null);
-        board.getGameBoard()[chosenMove.getEndX()][chosenMove.getEndY()].setPiece(randPiece);
+        Square startSquare = board.getSquare(chosenMove.getStartX(), chosenMove.getStartY());
+        Square endSquare = board.getGameBoard()[chosenMove.getEndX()][chosenMove.getEndY()];
+        startSquare.setPiece(null);
+        endSquare.setPiece(randPiece);
+        randPiece.setSquare(endSquare);
+    }
+
+    /**
+     * Returns the number of live pieces the player has
+     * @param board The board looked at
+     * @return the number of live pieces
+     */
+    public int numberOfLivePieces(Board board) {
+
+        try {
+            return this.getAllPieces(board).size();
+        } catch (Exception e) { System.out.println("Exception in Player.numberOfLivePieces"); return -99; }
     }
 
 }

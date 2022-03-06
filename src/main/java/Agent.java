@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Agent extends Player {
 
@@ -18,6 +19,8 @@ public class Agent extends Player {
      */
     @Override
     public boolean takeTurn() {
+
+        System.out.println("\nCalculating Move......\n");
 
         Board board = Board.getBoard();
         Board simulatedBoard = board.duplicateBoard();
@@ -81,7 +84,7 @@ public class Agent extends Player {
         return true;
     }
 
-    /**TODO
+    /**
      * Simulates random games from that move
      * @param board Copy of the board
      * @param chosenMove Move chosen by Agent
@@ -90,11 +93,15 @@ public class Agent extends Player {
     public boolean simulateGame(Board board, Move chosenMove) {
 
         Board simulatedBoard = board.duplicateBoard();
+        int numberTurns = 0;
 
         try {
             AbsPiece movedPiece = simulatedBoard.getSquare(chosenMove.getStartX(), chosenMove.getStartY()).getPiece();
-            simulatedBoard.getSquare(chosenMove.getStartX(), chosenMove.getStartY()).setPiece(null);
-            simulatedBoard.getGameBoard()[chosenMove.getEndX()][chosenMove.getEndY()].setPiece(movedPiece);
+            Square startSquare = simulatedBoard.getSquare(chosenMove.getStartX(), chosenMove.getStartY());
+            Square endSquare = simulatedBoard.getGameBoard()[chosenMove.getEndX()][chosenMove.getEndY()];
+            startSquare.setPiece(null);
+            endSquare.setPiece(movedPiece);
+            movedPiece.setSquare(endSquare);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Tried to access square outside of board IN Agent.simulateGame().");
@@ -102,7 +109,21 @@ public class Agent extends Player {
         }
 
         while(simulatedBoard.kingsAlive()) {
-            simulatedBoard.printBlacksBoard();
+
+            numberTurns++; // Used to limit how long the sim can run
+
+            if (numberTurns > this.difficulty/2) { // For now I'll just say its allowed to run for half as many turns as simulations will happen
+
+                if (this.numberOfLivePieces(simulatedBoard) > this.opponent.numberOfLivePieces(simulatedBoard)) {
+                    return true; // Base winning on who has more pieces
+                }
+                else if (this.numberOfLivePieces(simulatedBoard) < this.opponent.numberOfLivePieces(simulatedBoard)) {
+                    return false;
+                }
+                Random rand = new Random();
+                return rand.nextBoolean(); // If they have the same number of pieces then just choose a random winner
+
+            }
 
             try {
                 this.opponent.chooseRandomMove(simulatedBoard);
