@@ -18,7 +18,7 @@ public class Main {
         if (gameType.equals("PvC")) {
 
             whitePlayer = new Player(false);
-            blackPlayer = new Agent(true, 10, whitePlayer);
+            blackPlayer = new Agent(true, 100, whitePlayer);
 
 
         } else {

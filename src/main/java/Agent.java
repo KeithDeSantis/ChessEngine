@@ -110,6 +110,8 @@ public class Agent extends Player {
 
         while(simulatedBoard.kingsAlive()) {
 
+            //simulatedBoard.printBlacksBoard();
+
             numberTurns++; // Used to limit how long the sim can run
 
             if (numberTurns > this.difficulty/2) { // For now I'll just say its allowed to run for half as many turns as simulations will happen
