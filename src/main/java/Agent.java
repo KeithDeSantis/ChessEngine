@@ -163,15 +163,11 @@ public class Agent extends Player {
      */
     public boolean checkAgentWonHelper(Board board) {
 
-        if (board.checkForWinner().equals("Black")) {
-            return this.team;
+        if (this.team) { // agent is Black Player
+            return board.checkForWinner().equals("Black");
+        } else { // agent is white player
+            return board.checkForWinner().equals("White");
         }
-        else if (board.checkForWinner().equals("White")) {
-            return !this.team;
-        }
-
-        System.out.println("Got to a line you shouldn't have in checkAgentWonHelper!!\n");
-        return true; //should never get here
     }
 
     /**
