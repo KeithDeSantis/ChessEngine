@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+
 public class King extends AbsPiece {
 
     public King(boolean team, boolean isLive, Square square, boolean hasMoved) {
@@ -70,6 +72,38 @@ public class King extends AbsPiece {
 
         return dest;
 
+    }
+
+    /**
+     * Returns a list of all possible moves the King can make
+     * @param board The board context being looked at
+     * @return An ArrayList<Move> of possible moves
+     * @throws Exception If the function tries to access a non-existent square
+     */
+    public ArrayList<Move> getAllMoves(Board board) throws Exception {
+
+        ArrayList<Move> allMoves = new ArrayList<Move>();
+        int xAxis = this.getSquare().getxAxis();
+        int yAxis = this.getSquare().getyAxis();
+        int tempX;
+        int tempY;
+
+        // 8 Moves Possible, for X and Y could have -1, +0, or +1 (not +0,+0 though)
+
+        for (int xChange = -1; xChange < 2; xChange++) {
+            for (int yChange = -1; yChange < 2; yChange++) {
+                if (xChange == 0 && yChange == 0) break; // Staying in place isn't a valid move
+                tempX = xAxis + xChange;
+                tempY = yAxis + yChange;
+                if (areCoordsInBoundsHelper(tempX, tempY)) {
+                    if (canMove(board.getSquare(tempX, tempY), board)) {
+                        allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(tempX, tempY)));
+                    }
+                }
+            }
+        }
+
+        return allMoves;
     }
 
     /**

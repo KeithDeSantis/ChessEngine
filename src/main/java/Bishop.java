@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+
 public class Bishop extends AbsPiece {
 
     public Bishop(boolean team, boolean isLive, Square square, boolean hasMoved) {
@@ -53,6 +55,76 @@ public class Bishop extends AbsPiece {
         this.setSquare(dest); // Update the piece
 
         return dest;
+
+    }
+
+    /**
+     * Returns a list of all possible moves the bishop can make
+     * @param board The board context being looked at
+     * @return An ArrayList<Move> of possible moves
+     * @throws Exception If the function tries to access a non-existent square
+     */
+    public ArrayList<Move> getAllMoves(Board board) throws Exception {
+
+        // Test in each direction up to the end of the board
+        /*
+        Direction variable encodes the direction of travel
+        1: Up Right = X + 1, Y - 1
+        2: Up Left = X - 1, Y - 1
+        3: Down Right = X + 1, Y + 1
+        4: Down Left = X - 1, Y + 1
+         */
+
+        ArrayList<Move> allMoves = new ArrayList<Move>();
+
+        for (int dir = 1; dir < 5; dir++) { // For each direction
+
+            int xAxis = this.getSquare().getxAxis();
+            int yAxis = this.getSquare().getyAxis();
+
+            switch(dir){
+                case 1: // Up Right
+                    while (areCoordsInBoundsHelper(xAxis, yAxis)) {
+                        if (canMove(board.getSquare(xAxis, yAxis), board)) { // If its a valid move
+                            allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis, yAxis))); // Add move to list
+                        }
+                        xAxis += 1; // Update coords in this direction
+                        yAxis -= 1;
+                    }
+                    break;
+                case 2: // Up Left
+                    while (areCoordsInBoundsHelper(xAxis, yAxis)) {
+                        if (canMove(board.getSquare(xAxis, yAxis), board)) { // If its a valid move
+                            allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis, yAxis))); // Add move to list
+                        }
+                        xAxis -= 1; // Update coords in this direction
+                        yAxis -= 1;
+                    }
+                    break;
+                case 3: // Down Right
+                    while (areCoordsInBoundsHelper(xAxis, yAxis)) {
+                        if (canMove(board.getSquare(xAxis, yAxis), board)) { // If its a valid move
+                            allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis, yAxis))); // Add move to list
+                        }
+                        xAxis += 1; // Update coords in this direction
+                        yAxis += 1;
+                    }
+                    break;
+                case 4: // Down Left
+                    while (areCoordsInBoundsHelper(xAxis, yAxis)) {
+                        if (canMove(board.getSquare(xAxis, yAxis), board)) { // If its a valid move
+                            allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis, yAxis))); // Add move to list
+                        }
+                        xAxis -= 1; // Update coords in this direction
+                        yAxis += 1;
+                    }
+                    break;
+                default:
+                    return null; //Shouldn't get here
+            }
+        }
+
+        return allMoves;
 
     }
 

@@ -9,6 +9,7 @@ public class Player {
 
     // 0 is white, 1 is black
     public boolean team;
+    private Player opponent;
 
     public Player(boolean team) {
         this.team = team;
@@ -129,5 +130,7 @@ public class Player {
             return this.getAllPieces(board).size();
         } catch (Exception e) { System.out.println("Exception in Player.numberOfLivePieces"); return -99; }
     }
+
+    public void setOpponent(Player opponent) { this.opponent = opponent; }
 
 }

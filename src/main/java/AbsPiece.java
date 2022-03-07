@@ -28,28 +28,6 @@ public abstract class AbsPiece implements IPiece {
     }
 
     /**
-     * Checks (very badly) and finds all possible moves that the piece can make.
-     * @return A list of all possible moves
-     * @throws Exception Shouldn't ever happen, but if it tries to access a non-existent square
-     */
-    public ArrayList<Move> getAllMoves(Board board) throws Exception {
-
-        ArrayList<Move> allMoves = new ArrayList<Move>();
-
-        for (int x = 0; x < 8; x ++) {
-            for (int y = 0; y < 8; y ++) {
-
-                if (this.canMove(board.getSquare(x,y), board)) {
-                    allMoves.add(new Move(this.team, this, this.square, board.getSquare(x,y)));
-                }
-
-            }
-        }
-
-        return allMoves;
-    }
-
-    /**
      * Creates a deep copy of this piece
      * MUST BE OVERRIDEN IN EACH SUBCLASS
      * @return the deepcopy
@@ -108,5 +86,15 @@ public abstract class AbsPiece implements IPiece {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * A helper that determines if given coords are within the bounds
+     * @param xAxis the xAxis
+     * @param yAxis the yAxis
+     * @return True if they are in bounds
+     */
+    public boolean areCoordsInBoundsHelper(int xAxis, int yAxis) {
+        return (xAxis >= 0 && xAxis <= 7 && yAxis >= 0 && yAxis <= 7);
     }
 }

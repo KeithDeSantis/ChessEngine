@@ -1,5 +1,6 @@
 package main.java;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pawn extends AbsPiece {
@@ -31,7 +32,9 @@ public class Pawn extends AbsPiece {
 
         try {
             path.generatePawnPath(dest, board);
-        } catch (Exception e) { return false; }
+        } catch (Exception e) {
+            return false;
+        }
 
         return path.getIsClear();
 
@@ -46,7 +49,9 @@ public class Pawn extends AbsPiece {
      */
     public Square move(Square dest) throws Exception {
 
-        if (!canMove(dest, Board.getBoard())) throw new Exception("Invalid move exception");
+        if (!canMove(dest, Board.getBoard())) {
+            throw new Exception("Invalid move exception"); // TODO weird bug was sometimes happening here??
+        }
 
         Board.getBoard().editSquare(this.getSquare().getxAxis(), this.getSquare().getyAxis(), null);
 
@@ -106,6 +111,47 @@ public class Pawn extends AbsPiece {
             }
 
         }
+
+    }
+
+    /**
+     * Returns a list of all possible moves the Pawn can make
+     * @param board The board context being looked at
+     * @return An ArrayList<Move> of possible moves
+     * @throws Exception If the function tries to access a non-existent square
+     */
+    public ArrayList<Move> getAllMoves(Board board) throws Exception { // TODO add en passant (too lazy rn)
+
+        ArrayList<Move> allMoves = new ArrayList<Move>();
+
+        int xAxis = this.getSquare().getxAxis();
+        int yAxis = this.getSquare().getyAxis();
+        int forwardY;
+        int doubleJumpY;
+
+        if (this.getTeam()) {
+                forwardY = yAxis + 1;
+                doubleJumpY = yAxis + 2;
+        }
+        else {
+            forwardY = yAxis - 1;
+            doubleJumpY = yAxis - 2;
+        }
+
+        if (areCoordsInBoundsHelper(xAxis, forwardY)) {
+            if (canMove(board.getSquare(xAxis, yAxis), board)) allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis, forwardY))); // Forward move
+        }
+        if (areCoordsInBoundsHelper(xAxis, doubleJumpY)) {
+            if (canMove(board.getSquare(xAxis, doubleJumpY), board)) allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis, doubleJumpY))); // Double Jump move
+        }
+        if (areCoordsInBoundsHelper(xAxis - 1, forwardY)) {
+            if (canMove(board.getSquare(xAxis - 1, forwardY), board)) allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis - 1, forwardY))); // Capture 1
+        }
+        if (areCoordsInBoundsHelper(xAxis + 1, forwardY)) {
+            if (canMove(board.getSquare(xAxis + 1, forwardY), board)) allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(xAxis + 1, forwardY))); // Capture 2
+        }
+
+        return allMoves;
 
     }
 
