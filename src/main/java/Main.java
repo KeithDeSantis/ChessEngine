@@ -9,22 +9,31 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Board board = Board.getBoard();
         MoveHistory mvHistory = MoveHistory.getMoveHistory();
-        Player whitePlayer;
-        Player blackPlayer;
+        Player whitePlayer = null;
+        Player blackPlayer = null;
 
-        System.out.println("Would you like to play Player vs Player or Player vs Computer? Please enter PvP or PvC");
+        System.out.println("Would you like to play in terms of Players and Computers? Please enter PvP, PvC or CvC.");
         String gameType = scanner.nextLine();
 
         if (gameType.equals("PvC")) {
 
             whitePlayer = new Player(false);
             blackPlayer = new Agent(true, 10, whitePlayer);
+            whitePlayer.setOpponent(blackPlayer);
 
-
-        } else {
+        } else if (gameType.equals("PvP")) {
 
             whitePlayer = new Player(false);
             blackPlayer = new Player(true);
+            whitePlayer.setOpponent(blackPlayer);
+            blackPlayer.setOpponent(whitePlayer);
+
+        } else if (gameType.equals("CvC")) {
+
+            whitePlayer = new Agent(false, 10, null);
+            blackPlayer = new Agent(true, 10, whitePlayer);
+            whitePlayer.setOpponent(blackPlayer);
+
         }
 
         while (board.kingsAlive()) {
@@ -37,7 +46,7 @@ public class Main {
             }
             if (!board.kingsAlive()) break;
             System.out.println("\nBlack Turn");
-            if (gameType.equals("PvP")) board.printBlacksBoard(); // Don't want to print the AI's board everytime, its just confusing looking
+            if (gameType.equals("PvP") || gameType.equals("CvC")) board.printBlacksBoard(); // Don't want to print the AI's board everytime, its just confusing looking
             while (!blackPlayer.takeTurn()) {
                 System.out.println("\nBlack Turn");
                 board.printBlacksBoard();

@@ -11,7 +11,7 @@ public class Agent extends Player {
     public Agent(boolean team, int difficulty, Player opponent) {
         super(team);
         this.opponent = opponent;
-        this.difficulty = difficulty * 50 + 1; // TODO Testing to determine difficulty and what coefficient should be
+        this.difficulty = difficulty * 500 + 1; // TODO Testing to determine difficulty and what coefficient should be
     }
 
     /**
@@ -91,7 +91,7 @@ public class Agent extends Player {
         return true;
     }
 
-    /**TODO set has moved for simulation pieces
+    /**
      * Simulates random games from that move
      * @param board Copy of the board
      * @param chosenMove Move chosen by Agent
@@ -194,4 +194,15 @@ public class Agent extends Player {
 
     public float getDifficulty() { return this.difficulty; }
 
+    public void setDifficulty(float difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Player getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
 }

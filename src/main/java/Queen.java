@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+
 public class Queen extends AbsPiece {
 
     public Queen(boolean team, boolean isLive, Square square, boolean hasMoved) {
@@ -69,6 +71,27 @@ public class Queen extends AbsPiece {
         this.setSquare(dest); // Update the piece
 
         return dest;
+
+    }
+
+    /**
+     * Returns a list of all possible moves the Queen can make
+     * @param board The board context being looked at
+     * @return An ArrayList<Move> of possible moves
+     * @throws Exception If the function tries to access a non-existent square
+     */
+    public ArrayList<Move> getAllMoves(Board board) throws Exception {
+
+        // Effectively just a combination of all the Bishop's moves and all the Rook's moves so...
+
+        ArrayList<Move> allMoves = new ArrayList<Move>();
+        Rook pathFindingRook = new Rook(this.getTeam(), this.getIsLive(), this.getSquare(), this.getHasMoved());
+        Bishop pathFindingBishop = new Bishop(this.getTeam(), this.getIsLive(), this.getSquare(), this.getHasMoved());
+
+        allMoves.addAll(pathFindingBishop.getAllMoves(board));
+        allMoves.addAll(pathFindingRook.getAllMoves(board));
+
+        return allMoves;
 
     }
 

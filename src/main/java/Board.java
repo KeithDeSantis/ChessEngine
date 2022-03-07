@@ -240,7 +240,7 @@ public class Board {
 
         if (numBlackKings > 1 || numWhiteKings > 1) {
             System.out.println("Multiple Kings of one color detected.");
-            return true; //TODO This was originally false
+            return false;
         }
 
         if (numBlackKings == 1 && numWhiteKings == 1) return true;

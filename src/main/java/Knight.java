@@ -1,6 +1,7 @@
 package main.java;
 
 import java.lang.Math;
+import java.util.ArrayList;
 
 public class Knight extends AbsPiece {
 
@@ -58,6 +59,46 @@ public class Knight extends AbsPiece {
         this.setSquare(dest);
 
         return dest;
+
+    }
+
+    /**
+     * Returns a list of all possible moves the Knight can make
+     * @param board The board context being looked at
+     * @return An ArrayList<Move> of possible moves
+     * @throws Exception If the function tries to access a non-existent square
+     */
+    public ArrayList<Move> getAllMoves(Board board) throws Exception {
+
+        ArrayList<Move> allMoves = new ArrayList<Move>();
+        int xAxis = this.getSquare().getxAxis();
+        int yAxis = this.getSquare().getyAxis();
+        int tempX;
+        int tempY;
+
+        // 8 Moves Possible, for X and Y with pairings of +/-1 and +/- 2.
+        // Using a gross set of four loops cause I'm tired.
+        // Basically just looping over the sign of each coord (+/-) and over the value of each coord (1 or 2)
+        for (int xSign = -1; xSign < 2; xSign+=2) {
+            for (int xChange = 1; xChange < 3; xChange++) {
+                for (int ySign = -1; ySign < 2; ySign += 2) {
+                    for (int yChange = 1; yChange < 3; yChange++) {
+                        if(xChange != yChange) { //ensure the changes are different so its an L jump
+                            tempX = xAxis + (xSign * xChange);
+                            tempY = yAxis + (ySign * yChange);
+                            if (areCoordsInBoundsHelper(tempX, tempY)) {
+                                if (canMove(board.getSquare(tempX, tempY), board)) {
+                                    allMoves.add(new Move(this.getTeam(), this, this.getSquare(), board.getSquare(tempX, tempY)));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return allMoves;
+
 
     }
 

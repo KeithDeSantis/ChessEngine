@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+
 public interface IPiece {
 
     /**
@@ -15,5 +17,13 @@ public interface IPiece {
      * @throws Exception in case the move is invalid
      */
     public Square move(Square dest) throws Exception;
+
+    /**
+     * Returns a list of all possible moves a piece can make, different implementation based on piece type for optimization
+     * @param board The board context being looked at
+     * @return An ArrayList<Move> of possible moves
+     * @throws Exception If the function tries to access a non-existent square
+     */
+    public ArrayList<Move> getAllMoves(Board board) throws Exception;
 
 }
