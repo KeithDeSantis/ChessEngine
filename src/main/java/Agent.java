@@ -15,7 +15,7 @@ public class Agent extends Player {
     }
 
     /**
-     * AI Agent Takes Turn
+     * AI Agent Takes Turn - Using Simple Rollouts
      */
     @Override
     public boolean takeTurn() {
