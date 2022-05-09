@@ -1,5 +1,3 @@
-package main.java;
-
 import java.util.ArrayList;
 
 public class King extends AbsPiece {
@@ -9,13 +7,13 @@ public class King extends AbsPiece {
         this.setLive(isLive);
         this.setSquare(square);
         this.setHasMoved(hasMoved);
-        this.setType("main.java.King");
+        this.setType("King");
 
     }
     public King(boolean team, Square square) {
         this.setTeam(team);
         this.setSquare(square);
-        this.setType("main.java.King");
+        this.setType("King");
     }
 
     /**
@@ -54,11 +52,11 @@ public class King extends AbsPiece {
     }
 
     /**
-     * main.java.Move the piece to the given destination (if legal)
+     * Move the piece to the given destination (if legal)
      * @param dest the destination square
      * @return The square that the piece ends on after a successful move
      * @throws Exception If the destination is illegal to move to
-     * throw an "Invalid main.java.Move Exception"
+     * throw an "Invalid Move Exception"
      */
     public Square move(Square dest) throws Exception{
 

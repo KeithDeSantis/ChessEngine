@@ -1,5 +1,3 @@
-package main.java;
-
 import java.util.ArrayList;
 
 public class Rook extends AbsPiece {
@@ -9,13 +7,13 @@ public class Rook extends AbsPiece {
         this.setLive(isLive);
         this.setSquare(square);
         this.setHasMoved(hasMoved);
-        this.setType("main.java.Rook");
+        this.setType("Rook");
 
     }
     public Rook(boolean team, Square square) {
         this.setTeam(team);
         this.setSquare(square);
-        this.setType("main.java.Rook");
+        this.setType("Rook");
     }
 
     /**
@@ -48,11 +46,11 @@ public class Rook extends AbsPiece {
     }
 
     /**
-     * main.java.Move the piece to the given destination (if legal)
+     * Move the piece to the given destination (if legal)
      * @param dest the destination square
      * @return The square that the piece ends on after a successful move
      * @throws Exception If the destination is illegal to move to
-     * throw an "Invalid main.java.Move Exception"
+     * throw an "Invalid Move Exception"
      */
     public Square move(Square dest) throws Exception{
 
@@ -87,9 +85,9 @@ public class Rook extends AbsPiece {
                     path.generateHorizontal(kingSpace, Board.getBoard());
                 } catch (Exception e) { return this.getSquare(); }
 
-                if (!kingSpace.getPiece().getHasMoved() && board.getSquare(4, 7).getPiece().getType().equals("main.java.King")) { // main.java.King hasn't moved and is in right place
+                if (!kingSpace.getPiece().getHasMoved() && board.getSquare(4, 7).getPiece().getType().equals("King")) { // King hasn't moved and is in right place
 
-                    if (this.getSquare().getxAxis() == 7) { // main.java.Rook on 7 x coord
+                    if (this.getSquare().getxAxis() == 7) { // Rook on 7 x coord
 
                         if (path.getIsClear()) { // if there are no piece between
 
@@ -100,7 +98,7 @@ public class Rook extends AbsPiece {
                         }
                     }
 
-                    else { // main.java.Rook on 0 x coord
+                    else { // Rook on 0 x coord
 
                         if (path.getIsClear()) { // if there are no piece between
 
@@ -127,9 +125,9 @@ public class Rook extends AbsPiece {
                     path.generateHorizontal(kingSpace, Board.getBoard());
                 } catch (Exception e) { return this.getSquare(); }
 
-                if (!kingSpace.getPiece().getHasMoved() && kingSpace.getPiece().getType().equals("main.java.King")) { // main.java.King hasn't moved and is in right place
+                if (!kingSpace.getPiece().getHasMoved() && kingSpace.getPiece().getType().equals("King")) { // King hasn't moved and is in right place
 
-                    if (this.getSquare().getxAxis() == 7) { // main.java.Rook on 7 x coord
+                    if (this.getSquare().getxAxis() == 7) { // Rook on 7 x coord
 
                         if (path.getIsClear()) { // if there are no piece between
 
@@ -140,7 +138,7 @@ public class Rook extends AbsPiece {
                         }
                     }
 
-                    else { // main.java.Rook on 0 x coord
+                    else { // Rook on 0 x coord
 
                         if (path.getIsClear()) { // if there are no piece between
 

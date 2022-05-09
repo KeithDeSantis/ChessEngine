@@ -1,5 +1,3 @@
-package main.java;
-
 import java.lang.StringBuilder;
 
 public class Board {
@@ -12,7 +10,7 @@ public class Board {
 
         for (int x = 0; x < 8; x++) { // creation of white pawns
 
-            Pawn whitePawn = new Pawn(false, true, null, false); // main.java.Square is set to null...
+            Pawn whitePawn = new Pawn(false, true, null, false); // Square is set to null...
             gameBoard[x][6] = new Square(whitePawn, x, 6);
             whitePawn.setSquare(gameBoard[x][6]); // then updated after the square is made
 
@@ -20,7 +18,7 @@ public class Board {
 
         for (int x = 0; x < 8; x++) { // creation of black pawns
 
-            Pawn blackPawn = new Pawn(true, true, null, false); // main.java.Square is set to null...
+            Pawn blackPawn = new Pawn(true, true, null, false); // Square is set to null...
             gameBoard[x][1] = new Square(blackPawn, x, 1);
             blackPawn.setSquare(gameBoard[x][1]); // then updated after the square is made
 
@@ -107,7 +105,7 @@ public class Board {
      */
     public Square getSquare(int xAxis, int yAxis) throws Exception {
 
-        if (xAxis < 0 || xAxis > 7 || yAxis < 0 || yAxis > 7) throw new Exception("Invalid main.java.Square");
+        if (xAxis < 0 || xAxis > 7 || yAxis < 0 || yAxis > 7) throw new Exception("Invalid Square");
 
         return this.gameBoard[xAxis][yAxis];
 
@@ -118,7 +116,7 @@ public class Board {
      * @param xAxis the xAxis of the given square
      * @param yAxis the yAxis of the given square
      * @param piece the piece being placed on said square
-     * @return the edited main.java.Square
+     * @return the edited Square
      */
     public Square editSquare(int xAxis, int yAxis, AbsPiece piece) {
 
@@ -173,27 +171,27 @@ public class Board {
             for (int x = 0; x < 8; x++) {
                 switch (gameBoard[x][y].typeOfOccupant()) {
 
-                    case "main.java.Pawn":
+                    case "Pawn":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BP");
                         else strBld.append("WP");
                         break;
-                    case "main.java.Rook":
+                    case "Rook":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BR");
                         else strBld.append("WR");
                         break;
-                    case "main.java.Knight":
+                    case "Knight":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BN");
                         else strBld.append("WN");
                         break;
-                    case "main.java.Bishop":
+                    case "Bishop":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BB");
                         else strBld.append("WB");
                         break;
-                    case "main.java.Queen":
+                    case "Queen":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BQ");
                         else strBld.append("WQ");
                         break;
-                    case "main.java.King":
+                    case "King":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BK");
                         else strBld.append("WK");
                         break;
@@ -227,7 +225,7 @@ public class Board {
             for (int y = 0; y < 8; y ++) {
 
                 if (!(gameBoard[x][y].getPiece() == null)) {
-                    if (gameBoard[x][y].getPiece().getType() == "main.java.King") {
+                    if (gameBoard[x][y].getPiece().getType() == "King") {
 
                         if (gameBoard[x][y].getPiece().getTeam()) numBlackKings++;
                         else numWhiteKings++;
@@ -260,27 +258,27 @@ public class Board {
                 for (int x = 0; x < 8; x++) {
                     switch (gameBoard[x][y].typeOfOccupant()) {
 
-                        case "main.java.Pawn":
+                        case "Pawn":
                             if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BP");
                             else strBld.append("WP");
                             break;
-                        case "main.java.Rook":
+                        case "Rook":
                             if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BR");
                             else strBld.append("WR");
                             break;
-                        case "main.java.Knight":
+                        case "Knight":
                             if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BN");
                             else strBld.append("WN");
                             break;
-                        case "main.java.Bishop":
+                        case "Bishop":
                             if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BB");
                             else strBld.append("WB");
                             break;
-                        case "main.java.Queen":
+                        case "Queen":
                             if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BQ");
                             else strBld.append("WQ");
                             break;
-                        case "main.java.King":
+                        case "King":
                             if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BK");
                             else strBld.append("WK");
                             break;
@@ -315,27 +313,27 @@ public class Board {
             for (int x = 0; x < 8; x++) {
                 switch (gameBoard[x][y].typeOfOccupant()) {
 
-                    case "main.java.Pawn":
+                    case "Pawn":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BP");
                         else strBld.append("WP");
                         break;
-                    case "main.java.Rook":
+                    case "Rook":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BR");
                         else strBld.append("WR");
                         break;
-                    case "main.java.Knight":
+                    case "Knight":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BN");
                         else strBld.append("WN");
                         break;
-                    case "main.java.Bishop":
+                    case "Bishop":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BB");
                         else strBld.append("WB");
                         break;
-                    case "main.java.Queen":
+                    case "Queen":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BQ");
                         else strBld.append("WQ");
                         break;
-                    case "main.java.King":
+                    case "King":
                         if (gameBoard[x][y].getPiece().getTeam()) strBld.append("BK");
                         else strBld.append("WK");
                         break;
@@ -371,7 +369,7 @@ public class Board {
             for (int y = 0; y < 8; y ++) {
 
                 if (!(gameBoard[x][y].getPiece() == null)) {
-                    if (gameBoard[x][y].getPiece().getType() == "main.java.King") {
+                    if (gameBoard[x][y].getPiece().getType() == "King") {
 
                         if (gameBoard[x][y].getPiece().getTeam()) numBlackKings++;
                         else numWhiteKings++;

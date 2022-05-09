@@ -1,6 +1,3 @@
-package main.java;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,7 +13,7 @@ public class Player {
     }
 
     /**
-     * Returns true if a valid turn was completed, and records the move in main.java.MoveHistory
+     * Returns true if a valid turn was completed, and records the move in MoveHistory
      * @return True if a legal move was made.
      */
     public boolean takeTurn() {

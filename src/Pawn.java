@@ -1,5 +1,3 @@
-package main.java;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,13 +8,13 @@ public class Pawn extends AbsPiece {
         this.setLive(isLive);
         this.setSquare(square);
         this.setHasMoved(hasMoved);
-        this.setType("main.java.Pawn");
+        this.setType("Pawn");
 
     }
     public Pawn(boolean team, Square square) {
         this.setTeam(team);
         this.setSquare(square);
-        this.setType("main.java.Pawn");
+        this.setType("Pawn");
     }
 
     /**
@@ -41,11 +39,11 @@ public class Pawn extends AbsPiece {
     }
 
     /**
-     * main.java.Move the piece to the given destination (if legal)
+     * Move the piece to the given destination (if legal)
      * @param dest the destination square
      * @return The square that the piece ends on after a successful move
      * @throws Exception If the destination is illegal to move to
-     * throw an "Invalid main.java.Move Exception"
+     * throw an "Invalid Move Exception"
      */
     public Square move(Square dest) throws Exception {
 
@@ -68,7 +66,7 @@ public class Pawn extends AbsPiece {
     }
 
     /**
-     * Helper function for main.java.Pawn's movement that takes the player's choice of piece to replace and replaces it
+     * Helper function for Pawn's movement that takes the player's choice of piece to replace and replaces it
      * @param team The team whose pawn is being switched
      */
     private void pawnSwapHelper(boolean team) {
@@ -79,7 +77,7 @@ public class Pawn extends AbsPiece {
 
         boolean invalidPiece = true;
 
-        System.out.println("Your pawn has reached the opposite side of the board, if you want to switch \nto another piece (other than main.java.King) write the piece's name (e.g. \"main.java.Queen\"). If not please write \"main.java.Pawn\".");
+        System.out.println("Your pawn has reached the opposite side of the board, if you want to switch \nto another piece (other than King) write the piece's name (e.g. \"Queen\"). If not please write \"Pawn\".");
 
         while(invalidPiece) {
 
