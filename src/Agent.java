@@ -72,6 +72,7 @@ public class Agent extends Player {
 
         try {
             board.getSquare(startX, startY).getPiece().move(board.getGameBoard()[endX][endY]);
+            board.getGameBoard()[endX][endY].getPiece().setHasMoved(true);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Tried to access square outside board IN Agent.takeTurn() (3rd Exception).");
