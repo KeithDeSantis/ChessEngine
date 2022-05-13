@@ -12,4 +12,4 @@ The UI and UX is currently very rough and only done through ASCII StdIn/StdOut a
 
 ## AI
 
-The current AI uses simulated rollouts to determine moves, with difficulty scaling based on number of simulations, but currently has bugs and is being worked on.
+The current AI uses simulated rollouts to determine moves, with difficulty scaling based on number of simulations, and may be improved in future iterations.
