@@ -32,7 +32,8 @@ public class Player {
         while(wrongInput) {
 
             try {
-                String move = scanner.nextLine();
+                String input = scanner.nextLine();
+                String move = this.inputToCoords(input);
                 String[] start = move.split(" ")[0].split(",");
                 String[] end = move.split(" ")[1].split(",");
                 startCoords[0] = Integer.parseInt(start[0]);
@@ -129,5 +130,32 @@ public class Player {
     }
 
     public void setOpponent(Player opponent) { this.opponent = opponent; }
+
+    /**
+     * Takes in a user input in the form of <letter><number> for coordinates and returns to numerical coordinataes of our system
+     * TODO very messy, I'll deal with it later
+     * @param userInput The user input
+     * @return A string of the same move in our system's coords
+     */
+    public String inputToCoords(String userInput) {
+
+        StringBuilder strBld = new StringBuilder();
+        String[] startCoords = userInput.split(" ")[0].split(",");
+        String[] endCoords = userInput.split(" ")[1].split(",");
+
+        String startColNumber = Integer.toString((int) (startCoords[0].toLowerCase().charAt(0)) - 97); // Gives number of column (0 for 'a', 1 for 'b', etc)
+        String endColNumber = Integer.toString((int) (endCoords[0].toLowerCase().charAt(0)) - 97);
+
+        strBld.append(startColNumber);
+        strBld.append(",");
+        strBld.append(Integer.toString(8 - Integer.parseInt(startCoords[1])));
+        strBld.append(" ");
+        strBld.append(endColNumber);
+        strBld.append(",");
+        strBld.append(Integer.toString(8 - Integer.parseInt(endCoords[1])));
+
+        return strBld.toString();
+
+    }
 
 }

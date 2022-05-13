@@ -254,7 +254,7 @@ public class Board {
             StringBuilder strBld = new StringBuilder();
 
             for (int y = 0; y < 8; y++) {
-                strBld.append(y + " ");
+                strBld.append((8 - y) + " ");
                 for (int x = 0; x < 8; x++) {
                     switch (gameBoard[x][y].typeOfOccupant()) {
 
@@ -296,7 +296,7 @@ public class Board {
                 strBld.append("\n");
 
             }
-            strBld.append("  0  1  2  3  4  5  6  7");
+            strBld.append("  A  B  C  D  E  F  G  H");
 
             System.out.println(strBld.toString());
         }
@@ -309,7 +309,7 @@ public class Board {
         StringBuilder strBld = new StringBuilder();
 
         for (int y = 7; y >= 0; y--) {
-            strBld.append(y + " ");
+            strBld.append(-(y - 8) + " ");
             for (int x = 0; x < 8; x++) {
                 switch (gameBoard[x][y].typeOfOccupant()) {
 
@@ -351,7 +351,7 @@ public class Board {
             strBld.append("\n");
 
         }
-        strBld.append("  0  1  2  3  4  5  6  7");
+        strBld.append("  A  B  C  D  E  F  G  H");
 
         System.out.println(strBld.toString());
     }
