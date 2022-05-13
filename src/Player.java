@@ -22,7 +22,7 @@ public class Player {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Identify the piece you want to move first and then where you want it moved to using coordinates and a space between the inputs.\nExample input: 1,6 1,5");
+        System.out.println("Identify the piece you want to move first and then where you want it moved to using coordinates and a space between the inputs.\nExample input: a,6 a,5");
 
 
         boolean wrongInput = true;
